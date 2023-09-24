@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-melhefnawi-restaurant-bo-6fpyzyk2q1.us2.codeanyapp.com', 'arabian.herokuapp.com', 'localhost' ]
+    '8000-melhefnawi-restaurant-bo-6fpyzyk2q1.us2.codeanyapp.com', 'arabian.herokuapp.com', 'localhost', 'arabian-8c3cc574e38b.herokuapp.com']
 
 
 # Application definition
