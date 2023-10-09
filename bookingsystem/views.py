@@ -17,6 +17,6 @@ class BookingDetails(View):
 
         queryset = Booking_details.objects.all()
         booking = get_object_or_404(queryset, First_Name=First_Name)
-        
-        return render(request, "booking/booking_details.html", {"booking": booking})
 
+        return render(request, "booking/booking_details.html",
+                      {"booking": booking})
