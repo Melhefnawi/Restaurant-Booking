@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
 from .models import Booking_details, Client, Menu
+from .forms import BookingForms
 # Create your views here.
 
 
@@ -19,4 +20,4 @@ class BookingDetails(View):
         booking = get_object_or_404(queryset, First_Name=First_Name)
 
         return render(request, "booking/booking_details.html",
-                      {"booking": booking})
+                      {"booking": booking, "booking_form": BookingForms()})
