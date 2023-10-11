@@ -1,6 +1,9 @@
-{% extends 'booking/base.html' %} {% block content %}
+{% extends 'booking/base.html' %}
 
-{% load crispy_forms_tags%}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
 
 <div class="masthead">
     <div class="container">
@@ -25,16 +28,16 @@
 <div class="container">
     <div class ="row">
         <div class="col card mb-4 left top">
-            {%if user.is_authenticated%}
+            
             <form method="POST" style="margin-top:1.3em;">
                 {{booking_form|crispy}}
                 {%csrf_token%}
                 <button type="submit" class="btn btn-signup btn-lg">submit</button>
             </form>
-            {%endif%}
+           
         </div>
     </div>
-</div>
+</div> 
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">

@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.messages',
     'cloudinary_storage',
-    'crispy-forms',
+    'crispy_forms',
     'django.contrib.staticfiles',
     'cloudinary',
     'bookingsystem',
@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 SITE_ID = 1 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-CRISPY_TEMPLATE_PACK = 'bootstrap'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
