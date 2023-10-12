@@ -12,6 +12,14 @@ class BookingList(generic.ListView):
     template_name = 'booking/index.html'
 
 
+class BookingName(View):
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, "booking/booking_name.html",
+                      {"booking_form": BookingForms()})
+
+    
 class BookingDetails(View):
 
     def get(self, request, First_Name, *args, **kwargs):
@@ -31,4 +39,4 @@ class BookingDetails(View):
         else:
             booking_form = BookingForms()
         return render(request, "booking/booking_details.html", {
-                                                            "booking_form": BookingForms()})
+            "booking_form": BookingForms()})

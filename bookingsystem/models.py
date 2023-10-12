@@ -45,4 +45,4 @@ class Menu(models.Model):
     Featured_image = CloudinaryField('image', default="placeholder")
 
     def __str__(self):
-        return self.Featured_image
+        return f"Image Name: {self.Featured_image}"
