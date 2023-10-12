@@ -12,11 +12,11 @@ class BookingList(generic.ListView):
     template_name = 'booking/index.html'
 
 
-class BookingName(View):
+class Name(View):
 
     def get(self, request, *args, **kwargs):
 
-        return render(request, "booking/booking_name.html",
+        return render(request, "booking/name.html",
                       {"booking_form": BookingForms()})
 
     
