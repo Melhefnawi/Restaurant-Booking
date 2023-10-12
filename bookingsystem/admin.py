@@ -8,6 +8,10 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('First_Name', 'Last_Name')
     search_fields = ['First_Name', 'Date']
     list_filter = ('First_Name', 'Last_Name')
+    actions = ['approve_booking']
+
+    def approve_booking(self, request, queryset):
+        queryset.update(approved=True)
 
 
 @admin.register(Client)

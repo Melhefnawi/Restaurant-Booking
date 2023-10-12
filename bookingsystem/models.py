@@ -8,9 +8,13 @@ from cloudinary.models import CloudinaryField
 class Booking_details(models.Model):
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
+    Email = models.EmailField(null=True)
+    Phone_Number = models.IntegerField(null=True)
     Date = models.DateField()
     Time = models.TimeField()
     People_No = models.IntegerField()
+    body = models.TextField(null=True)
+    Featured_image = CloudinaryField('image', default="placeholder")
     approved = models.BooleanField(default=False)
 
     class Meta:
@@ -18,7 +22,7 @@ class Booking_details(models.Model):
         ordering = ['-Date']
 
     def __str__(self):
-        return f"Booking Name: {self.First_Name} + {self.Last_Name}"
+        return f"Booking Name: {self.First_Name} {self.Last_Name}"
 
 
 class Client (models.Model):

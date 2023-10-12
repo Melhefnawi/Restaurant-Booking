@@ -20,7 +20,7 @@
                                 <img class="card-img-top" src=" {{ booking.featured_image.url }}">
                                 {% endif %}
                                 <div class="image-flash">
-                                    <p class="author">Author: {{ booking.First_Name }}</p>
+                                    <p class="author">First Name: {{ booking.First_Name }}</p>
                                 </div>
                             </div>
                             <a href="{% url 'Booking_details' booking.First_Name  %}" class="post-link">

@@ -21,3 +21,14 @@ class BookingDetails(View):
 
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
+
+    def post(self, request, First_Name, *args, **kwargs):
+
+        booking_form = BookingForms(request.POST)
+
+        if booking_form.is_valid():
+            booking_form.save()
+        else:
+            booking_form = BookingForms()
+        return render(request, "booking/booking_details.html", {
+                                                            "booking_form": BookingForms()})
