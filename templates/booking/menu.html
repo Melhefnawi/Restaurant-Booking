@@ -4,15 +4,15 @@
 
 <div class="masthead">
     <div class="container">
-        <div class="row g-0">
+        <div class="row">
             {% for photo in menu_list%}
             
-                    <div class="d-none d-md-block col-md-6 masthead-image">
+                    <div class=" col-md-2 ">
                         <!-- The featured image URL goes in the src attribute -->
                         {% if "placeholder" in photo.Featured_image.url %}
                         <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
                         {% else %}
-                        <img src=" {{ photo.Featured_image.url }}" width="50%">
+                        <img src=" {{ photo.Featured_image.url }}" width="100%">
                         {% endif %}
                 
                     </div>
