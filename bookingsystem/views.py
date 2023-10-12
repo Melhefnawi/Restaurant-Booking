@@ -11,6 +11,11 @@ class BookingList(generic.ListView):
     queryset = Booking_details.objects.all()
     template_name = 'booking/index.html'
 
+class MenuList(generic.ListView):
+
+    model = Menu
+    queryset = Menu.objects.all()
+    template_name = 'booking/menu.html'
 
 class Name(View):
 
