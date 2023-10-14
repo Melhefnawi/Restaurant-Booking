@@ -6,18 +6,12 @@
     <div class="container">
     <div class="row">
             {% for photo in menu_list%}
-            
-                    <div class=" col-4">
-                        <!-- The featured image URL goes in the src attribute -->
-                        {% if "placeholder" in photo.Featured_image.url %}
-                        <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
-                        {% else %}
-                        <img src=" {{ photo.Featured_image.url }}" width="100%">
-                        
-                        {% endif %}
-                        <h2>{{ photo.Meal_Name}}</h2>
-                   
-                </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ photo.Featured_image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">{{ photo.Meal_Name}}</p>
+                        </div>
+                    </div>
             {% endfor %}
         </div>
     </div>

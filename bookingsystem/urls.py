@@ -9,5 +9,6 @@ urlpatterns = [
     path('<str:First_Name>', views.BookingDetails.as_view(),
          name='Booking_details'),
     path('booking/show_booking', views.ShowBooking.as_view(), name='Show_Booking'),
+    path('homepage', views.HomePage.as_view(), name='homepage'),
     
 ]

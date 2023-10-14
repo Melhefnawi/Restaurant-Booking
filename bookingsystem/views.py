@@ -11,13 +11,14 @@ class BookingList(generic.ListView):
     queryset = Booking_details.objects.all()
     template_name = 'booking/index.html'
 
+
 class MenuList(generic.ListView):
 
     model = Menu
     queryset = Menu.objects.all()
     template_name = 'booking/menu.html'
 
-   
+
 class BookingDetails(View):
 
     def get(self, request, First_Name, *args, **kwargs):
@@ -45,7 +46,7 @@ class Name(View):
     def get(self, request, *args, **kwargs):
 
         return render(request, "booking/name.html",
-                      {"booking_form":BookingForms()})
+                      {"booking_form": BookingForms()})
 
     def post(self, request, *args, **kwargs):
 
@@ -67,9 +68,17 @@ class ShowBooking(View):
 
     def get(self, request, *args, **kwargs):
 
-      
         return render(request, "booking/show_booking.html",
-                      {"booking": booking })
+                      {"booking": booking})
 
-    
 
+class HomePage(View):
+
+    def get(self, request, *args, **kwargs):
+
+       queryset = Menu.objects.all()
+
+       photo = get_object_or_404(queryset, pk=1)
+        
+       return render(request, "booking/homepage.html",
+                    {"photo": photo})
