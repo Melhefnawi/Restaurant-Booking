@@ -24,4 +24,5 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Menu)
 class MenuAdmin(admin.ModelAdmin):
-    search_fields = ['Feature_image']
+    list_display = ('Featured_image', 'Meal_Name')
+    search_fields = ['Feature_image', 'Meal_Name']

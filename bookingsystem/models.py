@@ -43,6 +43,7 @@ class Client (models.Model):
 class Menu(models.Model):
 
     Featured_image = CloudinaryField('image', default="placeholder")
+    Meal_Name = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return f"Image Name: {self.Featured_image}"

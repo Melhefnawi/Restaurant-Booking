@@ -8,5 +8,6 @@ urlpatterns = [
     path('menu', views.MenuList.as_view(), name='menu'),
     path('<str:First_Name>', views.BookingDetails.as_view(),
          name='Booking_details'),
+    path('booking/show_booking', views.ShowBooking.as_view(), name='Show_Booking'),
     
 ]
