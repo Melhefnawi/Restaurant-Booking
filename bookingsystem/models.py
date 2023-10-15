@@ -7,6 +7,7 @@ from cloudinary.models import CloudinaryField
 
 class Booking_details(models.Model):
     Booking_Id = models.IntegerField(unique=True, null=True)
+    Slug = models.SlugField(unique=True, null=True)
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
     Email = models.EmailField(null=True)

@@ -22,15 +22,16 @@ class MenuList(generic.ListView):
 
 class BookingDetails(View):
 
-    def get(self, request, Booking, *args, **kwargs):
+    def get(self, request, slug, *args, **kwargs):
 
-        booking = get_object_or_404(Booking_details, Booking_Id=Booking)
+        queryset = Booking_details.objects.all()
+
+        booking = get_object_or_404(queryset, Slug=slug)
 
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
 
     
-
 class Name(View):
 
     def get(self, request, *args, **kwargs):
@@ -41,6 +42,8 @@ class Name(View):
     def post(self, request, *args, **kwargs):
         
         booking_form = BookingForms(request.POST)
+
+        Phone_no = request.POST.get('Phone_Number')
         
         if booking_form.is_valid():
             booking_form.save()
@@ -48,16 +51,8 @@ class Name(View):
         else:
             booking_form = BookingForms()
 
-        booking_id_start_1 = random()
-        booking_id_start = (1000*booking_id_start_1)/8 + \
-            (booking_id_start_1*20900)/9+(booking_id_start_1*3000)/3
-        
-        Phone_no = request.POST.get('Phone_Number')
-       
         bookings = get_object_or_404(Booking_details, Phone_Number=Phone_no)
-        Booking_details.objects.filter(Phone_Number=Phone_no).update(
-            Booking_Id=booking_id_start)
-
+        
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
 
