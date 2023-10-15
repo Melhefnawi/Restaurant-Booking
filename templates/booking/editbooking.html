@@ -8,32 +8,32 @@
         <!-- Booking Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
-               
+               {%for booking in bookings%}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">
-                                {% if "placeholder" in bookings.featured_image.url %}
+                                {% if "placeholder" in booking.featured_image.url %}
                                 <img class="card-img-top"
                                     src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ bookings.featured_image.url }}">
+                                <img class="card-img-top" src=" {{ booking.featured_image.url }}">
                                 {% endif %}
                                 <div class="image-flash">
-                                    <p class="author">Booking Name: {{ bookings.First_Name }}</p>
+                                    <p class="author">Booking Name: {{ booking.First_Name }}</p>
                                 </div>
                             </div>
-                            <a href="{% url 'Booking_details' bookings.Booking_Id %}" class="post-link">
-                                <h2 class="card-title">{{ bookings.First_Name }}</h2>
-                                <p class="card-text">{{ bookings.Last_Name }}</p>
+                            <a href="{% url 'Booking_details' booking.First_Name  %}" class="post-link">
+                                <h2 class="card-title">{{ booking.First_Name }}</h2>
+                                <p class="card-text">{{ booking.Last_Name }}</p>
                             </a>
                             <hr />
-                            <p class="card-text text-muted h6">Booking Date:{{bookings.Date}} 
-                                People No:{{ bookings.People_No }}</p>
+                            <p class="card-text text-muted h6">Booking Date:{{booking.Date}} 
+                                People No:{{ booking.People_No }}</p>
                         </div>
                     </div>
                 </div>
-            
+            {%endfor%}
             </div>
            
         </div>

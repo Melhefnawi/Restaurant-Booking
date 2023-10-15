@@ -6,6 +6,7 @@ from cloudinary.models import CloudinaryField
 
 
 class Booking_details(models.Model):
+    Booking_Id = models.IntegerField(unique=True, null=True)
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
     Email = models.EmailField(null=True)
@@ -20,7 +21,7 @@ class Booking_details(models.Model):
     class Meta:
 
         ordering = ['-Date']
-
+       
     def __str__(self):
         return f"Booking Name: {self.First_Name} {self.Last_Name}"
 

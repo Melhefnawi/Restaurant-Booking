@@ -3,21 +3,29 @@
 
 {% block content %}
 
-
-
-
     <div class="container">
         <div class="row">
             <div class="col-3">
-                <!-- Post title goes in these h1 tags -->
-                <h1 class="Booking Name">{{ booking.First_Name }}</h1>
+                <!-- Booking Name goes in these h1 tags -->
+                <h1 class="booking">{{ booking.First_Name }}</h1>
                 <!-- Post author goes before the | the post's created date goes after -->
                 <p class="post-subtitle">{{ booking.Last_Name }} | {{ booking.Date}}</p>
+                <p class="booking"> {{booking.Email}}</p>
+                <p>{{booking.Phone_Number}}</p>
+                <p>{{booking.Time}}</p>
+
+                <a href="">
+                <input class="btn btn-primary" type="button" value="Edit">
+                </a>
+                <a href="">
+                <input class="btn btn-danger" type="submit" value="Delete">
+                </a>
+                <a href="">
+                <input class="btn btn-primary" type="reset" value="Reset">
+                </a>
             </div>
             
         </div>
     </div>
-
-
 
 {% endblock content %}
