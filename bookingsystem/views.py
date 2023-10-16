@@ -8,9 +8,9 @@ from random import *
 
 class BookingList(generic.ListView):
 
-    model = Booking_details
-    queryset = Booking_details.objects.all()
-    template_name = 'booking/index.html'
+    model = Menu
+    queryset = Menu.objects.all()
+    template_name = 'booking/homepage.html'
 
 
 class MenuList(generic.ListView):
@@ -93,13 +93,13 @@ class EditBooking(View):
 
         booking_ins = get_object_or_404(Booking_details, Slug=slug)
 
-        booking_form = BookingForms(request.POST, instance=booking_ins)
+        booking_form_1 = BookingForms(request.POST, instance=booking_ins)
 
-        if booking_form.is_valid():
-            booking_form.save()
+        if booking_form_1.is_valid():
+            booking_form_1.save()
 
         else:
-            booking_form = BookingForms()
+            booking_form_1 = BookingForms()
 
         booking = request.POST.get('Phone_Number')
         bookings = get_object_or_404(Booking_details, Phone_Number=booking)
@@ -114,9 +114,9 @@ class DeleteBooking(View):
 
         queryset = Booking_details.objects.all()
         book_detail = get_object_or_404(queryset, Slug=slug)
-        booking_form = BookingForms(instance=book_detail)
+        booking_form_2 = BookingForms(instance=book_detail)
 
-        return render(request, 'booking/deletebooking.html', {"form": booking_form})
+        return render(request, 'booking/deletebooking.html', {"form": booking_form_2})
 
     def post(self, request, slug, *args, **kwargs):
 
@@ -124,7 +124,7 @@ class DeleteBooking(View):
 
         booking_ins.delete()
 
-        return redirect("booking/homepage")
+        return render(request, "booking/homepage.html")
 
 
 
