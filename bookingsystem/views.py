@@ -51,7 +51,8 @@ class Name(View):
         else:
             booking_form = BookingForms()
 
-        bookings = get_object_or_404(Booking_details, Phone_Number=Phone_no)
+        Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
+        bookings = get_object_or_404(Booking_details, Slug=Phone_no)
         
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
@@ -80,34 +81,50 @@ class HomePage(View):
 
 class EditBooking(View):
 
-    def get(self, request, booking_id, *args, **kwargs):
+    def get(self, request, slug, *args, **kwargs):
 
         queryset = Booking_details.objects.all()
-        book_detail = get_object_or_404(queryset, id=booking_id)
+        book_detail = get_object_or_404(queryset, Slug=slug)
+        booking_form = BookingForms(instance=book_detail)
 
-        if request.method == 'POST':
+        return render(request, 'booking/editbooking.html', {"form": booking_form})
+        
+    def post(self, request, slug, *args, **kwargs):
 
-            form = BookingForms(request.POST, instance=book_detail)
+        booking_ins = get_object_or_404(Booking_details, Slug=slug)
 
-            if form.is_valid():
-                form.save()
-                return redirect('booking/booking_details.html')
+        booking_form = BookingForms(request.POST, instance=booking_ins)
 
-            form = BookingForms(instance=book_detail)
-            
-            return render(request, 'booking/show_booking.html', {"form": form})
+        if booking_form.is_valid():
+            booking_form.save()
+
+        else:
+            booking_form = BookingForms()
+
+        booking = request.POST.get('Phone_Number')
+        bookings = get_object_or_404(Booking_details, Phone_Number=booking)
+
+        return render(request, "booking/show_booking.html",
+                      {"bookings": bookings})
 
 
 class DeleteBooking(View):
         
-    def delete_booking(self, request, booking_id,*args, **kwargs):
+    def get(self, request, slug, *args, **kwargs):
 
         queryset = Booking_details.objects.all()
-        book_detail = get_object_or_404(queryset, id=booking_id)
+        book_detail = get_object_or_404(queryset, Slug=slug)
+        booking_form = BookingForms(instance=book_detail)
 
-        book_detail.delete()
+        return render(request, 'booking/deletebooking.html', {"form": booking_form})
 
-        return redirect('booking/booking_details.html')
+    def post(self, request, slug, *args, **kwargs):
+
+        booking_ins = get_object_or_404(Booking_details, Slug=slug)
+
+        booking_ins.delete()
+
+        return redirect("booking/homepage")
 
 
 

@@ -11,7 +11,7 @@ urlpatterns = [
     path('booking/show_booking', views.ShowBooking.as_view(),
          name='Show_Booking'),
     path('booking/homepage', views.HomePage.as_view(), name='homepage'),
-    path('booking/homepage', views.EditBooking.as_view(), name='homepage'),
-    path('booking/homepage', views.DeleteBooking.as_view(), name='homepage'),
+    path('booking/editbooking/<slug:slug>', views.EditBooking.as_view(), name='edit_booking'),
+    path('booking/deletebooking/<slug:slug>', views.DeleteBooking.as_view(), name='delete_booking'),
 
 ]

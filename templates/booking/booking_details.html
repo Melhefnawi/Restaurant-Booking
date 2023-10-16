@@ -14,15 +14,13 @@
                 <p>{{booking.Phone_Number}}</p>
                 <p>{{booking.Time}}</p>
 
-                <a href="">
+                <a href="{% url 'edit_booking' booking.Slug %}">
                 <input class="btn btn-primary" type="button" value="Edit">
                 </a>
-                <a href="">
+                <a href="{% url 'delete_booking' booking.Slug %}">
                 <input class="btn btn-danger" type="submit" value="Delete">
                 </a>
-                <a href="">
-                <input class="btn btn-primary" type="reset" value="Reset">
-                </a>
+                
             </div>
             
         </div>
