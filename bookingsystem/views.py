@@ -31,7 +31,7 @@ class BookingDetails(View):
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
 
-    
+
 class Name(View):
 
     def get(self, request, *args, **kwargs):
@@ -40,10 +40,10 @@ class Name(View):
                       {"booking_form": BookingForms()})
 
     def post(self, request, *args, **kwargs):
-        
-        booking_form = BookingForms(request.POST)
 
         Phone_no = request.POST.get('Phone_Number')
+
+        booking_form = BookingForms(request.POST)
         
         if booking_form.is_valid():
             booking_form.save()
@@ -51,11 +51,13 @@ class Name(View):
         else:
             booking_form = BookingForms()
 
-        Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
-        bookings = get_object_or_404(Booking_details, Slug=Phone_no)
         
+        Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
+        queryset = Booking_details.objects.filter(Phone_Number=Phone_no)
+        bookings_user = get_object_or_404(queryset, Phone_Number=Phone_no)
+
         return render(request, "booking/show_booking.html",
-                      {"bookings": bookings})
+                      {"bookings": bookings_user})
 
 
 class ShowBooking(View):
@@ -88,7 +90,7 @@ class EditBooking(View):
         booking_form = BookingForms(instance=book_detail)
 
         return render(request, 'booking/editbooking.html', {"form": booking_form})
-        
+
     def post(self, request, slug, *args, **kwargs):
 
         booking_ins = get_object_or_404(Booking_details, Slug=slug)
@@ -109,7 +111,7 @@ class EditBooking(View):
 
 
 class DeleteBooking(View):
-        
+
     def get(self, request, slug, *args, **kwargs):
 
         queryset = Booking_details.objects.all()
@@ -124,7 +126,13 @@ class DeleteBooking(View):
 
         booking_ins.delete()
 
-        return render(request, "booking/homepage.html")
+        queryset = Menu.objects.all()
 
+        photo1 = get_object_or_404(queryset, Meal_Name="Cheese Burger")
+        photo2 = get_object_or_404(queryset, Meal_Name="Double Cheese Burger")
+        photo3 = get_object_or_404(
+            queryset, Meal_Name="Beef Burger with mushroom")
 
-
+        return render(request, "booking/homepage.html", {"photo1": photo1,
+                                                         "photo2": photo2,
+                                                        "photo3": photo3})

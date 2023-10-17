@@ -37,15 +37,14 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'booking'%}">Booking</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'menu' %}">Menu</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">HomePage</a>
-                    </li>
+                    {%endif%}
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{%url 'account_logout'%}">Logout</a>
@@ -55,7 +54,7 @@
                         <a class="nav-link" href="{%url 'account_signup'%}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'account_logout'%}">Login</a>
+                        <a class="nav-link" href="{%url 'account_login'%}">Login</a>
                     </li>
                     {% endif %}
                 </ul>
