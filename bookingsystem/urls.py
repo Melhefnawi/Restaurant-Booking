@@ -13,5 +13,7 @@ urlpatterns = [
     
     path('booking/editbooking/<slug:slug>', views.EditBooking.as_view(), name='edit_booking'),
     path('booking/deletebooking/<slug:slug>', views.DeleteBooking.as_view(), name='delete_booking'),
+    path('booking/previousbook',
+         views.PreviousBooking.as_view(), name='prevoius_book'),
 
 ]

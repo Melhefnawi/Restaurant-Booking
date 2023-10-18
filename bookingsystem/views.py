@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views import generic, View
 from .models import Booking_details, Client, Menu
-from .forms import BookingForms
+from .forms import BookingForms, Pre_Booking
 from random import *
 # Create your views here.
 
@@ -44,15 +44,15 @@ class Name(View):
         Phone_no = request.POST.get('Phone_Number')
 
         booking_form = BookingForms(request.POST)
-        
+
         if booking_form.is_valid():
             booking_form.save()
 
         else:
             booking_form = BookingForms()
 
-        
-        Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
+        Booking_details.objects.filter(
+            Phone_Number=Phone_no).update(Slug=Phone_no)
         queryset = Booking_details.objects.filter(Phone_Number=Phone_no)
         bookings_user = get_object_or_404(queryset, Phone_Number=Phone_no)
 
@@ -135,4 +135,20 @@ class DeleteBooking(View):
 
         return render(request, "booking/homepage.html", {"photo1": photo1,
                                                          "photo2": photo2,
-                                                        "photo3": photo3})
+                                                         "photo3": photo3})
+
+
+class PreviousBooking(View):
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, 'booking/previousbook.html',
+                      {"form": Pre_Booking()})
+
+    def post(self, request, *args, **kwargs):
+        
+        booking_1 = request.POST.get('Phone_Number')
+        booking_pre = get_list_or_404(Booking_details, Slug=booking_1)
+
+        return render(request, "booking/show_previous_booking.html",
+                      {"bookings": booking_pre})
