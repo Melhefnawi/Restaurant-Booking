@@ -3,6 +3,8 @@ from django.views import generic, View
 from .models import Booking_details, Client, Menu
 from .forms import BookingForms, Pre_Booking
 from random import *
+import urllib.request
+import urllib.error
 # Create your views here.
 
 
@@ -45,6 +47,19 @@ class Name(View):
 
         booking_form = BookingForms(request.POST)
 
+        try:
+            bookings_user = get_object_or_404(Booking_details, Slug=Phone_no)
+
+        except Http404:
+            return render(request, "booking/name.html",
+                          {"booking_form": BookingForms()})
+
+        try:
+            instance = Booking_details.objects.get(pk=something)
+
+
+        except Booking_details.DoesNotExist:
+    return render_to_response('a_template_with_your_error_message.html')
         if booking_form.is_valid():
             booking_form.save()
 
@@ -53,8 +68,6 @@ class Name(View):
 
         Booking_details.objects.filter(
             Phone_Number=Phone_no).update(Slug=Phone_no)
-        queryset = Booking_details.objects.filter(Phone_Number=Phone_no)
-        bookings_user = get_object_or_404(queryset, Phone_Number=Phone_no)
 
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings_user})
@@ -146,7 +159,7 @@ class PreviousBooking(View):
                       {"form": Pre_Booking()})
 
     def post(self, request, *args, **kwargs):
-        
+
         booking_1 = request.POST.get('Phone_Number')
         booking_pre = get_list_or_404(Booking_details, Slug=booking_1)
 
