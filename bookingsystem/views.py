@@ -45,26 +45,24 @@ class Name(View):
 
         Phone_no = request.POST.get('Phone_Number')
 
-        booking_form = BookingForms(request.POST)
-
         try:
             bookings_user = get_object_or_404(Booking_details, Slug=Phone_no)
 
-        except Http404:
+        except (Http404, IntegrityError):
             return render(request, "booking/name.html",
                           {"booking_form": BookingForms()})
-
-        try:
-            instance = Booking_details.objects.get(pk=something)
-
-
-        except Booking_details.DoesNotExist:
-    return render_to_response('a_template_with_your_error_message.html')
-        if booking_form.is_valid():
-            booking_form.save()
-
+      
         else:
-            booking_form = BookingForms()
+            return render(request, "booking/show_booking.html",
+                          {"bookings": bookings_user})
+        finally:
+           
+            booking_form = BookingForms(request.POST)
+            if booking_form.is_valid():
+               booking_form.save()
+
+            else:
+                booking_form = BookingForms()
 
         Booking_details.objects.filter(
             Phone_Number=Phone_no).update(Slug=Phone_no)
