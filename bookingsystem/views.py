@@ -47,28 +47,22 @@ class Name(View):
 
         try:
             bookings_user = get_object_or_404(Booking_details, Slug=Phone_no)
-
-        except (Http404, IntegrityError):
-            return render(request, "booking/name.html",
-                          {"booking_form": BookingForms()})
-      
-        else:
             return render(request, "booking/show_booking.html",
                           {"bookings": bookings_user})
-        finally:
-           
+
+        except:
             booking_form = BookingForms(request.POST)
             if booking_form.is_valid():
-               booking_form.save()
+                booking_form.save()
+                Booking_details.objects.filter(
+                    Phone_Number=Phone_no).update(Slug=Phone_no)
+                bookings_user = get_object_or_404(
+                    Booking_details, Slug=Phone_no)
+                return render(request, "booking/show_booking.html",
+                              {"bookings": bookings_user})
 
             else:
                 booking_form = BookingForms()
-
-        Booking_details.objects.filter(
-            Phone_Number=Phone_no).update(Slug=Phone_no)
-
-        return render(request, "booking/show_booking.html",
-                      {"bookings": bookings_user})
 
 
 class ShowBooking(View):
