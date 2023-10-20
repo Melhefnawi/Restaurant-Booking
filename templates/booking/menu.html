@@ -4,16 +4,19 @@
 
 
     <div class="container">
-    <div class="row">
+       
+             <div class="row">
             {% for photo in menu_list%}
-                    <div class="card" style="width: 18rem;">
+                    <div class="card " style="width: 32rem;">
                         <img src="{{ photo.Featured_image.url }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">{{ photo.Meal_Name}}</p>
+                        <div class="card-body ">
+                            <h2 class=" booking">{{ photo.Meal_Name}}</h2>
+                            <p class="masthead-text">{{photo.Meal_des}}</p>
                         </div>
                     </div>
             {% endfor %}
-        </div>
+            </div>
+       
     </div>
 
 

@@ -5,7 +5,7 @@ from .models import Booking_details, Client, Menu
 
 @admin.register(Booking_details)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('Booking_Id', 'First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Slug','Date', 'Time',
+    list_display = ('Booking_Id', 'First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Slug', 'Date', 'Time',
                     'People_No', 'approved')
     search_fields = ['First_Name', 'Date']
     list_filter = ('First_Name', 'Last_Name')
@@ -26,5 +26,5 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Menu)
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('Featured_image', 'Meal_Name')
+    list_display = ('Featured_image', 'Meal_Name', 'Meal_des')
     search_fields = ['Feature_image', 'Meal_Name']

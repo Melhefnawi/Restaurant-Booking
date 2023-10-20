@@ -29,9 +29,16 @@ body {
     background-color: #F9FAFC;
 }
 
-.card {
-    border: none;
-    background-color: transparent;
+.card_2 {
+    border-style: solid;
+    
+}
+
+.card_body{
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+   
 }
 
 .image-container {
@@ -56,6 +63,7 @@ body {
     color: black;
     margin: 4px;
     text-transform: uppercase;
+    background-color: aqua;
 }
 
 .masthead {
