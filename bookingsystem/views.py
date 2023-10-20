@@ -46,8 +46,7 @@ class Name(View):
         Phone_no = request.POST.get('Phone_Number')
 
         try:
-            queryset = Booking_details.objects.all()
-            bookings_user = get_object_or_404(queryset, Slug=Phone_no)
+            bookings_user = get_object_or_404(Booking_details, Slug=Phone_no)
             return render(request, "booking/show_booking.html",
                           {"bookings": bookings_user})
 
