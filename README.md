@@ -4,29 +4,7 @@ Arabian Burger is a Burger restaurant located beside the sea in County Antrim, N
 
 ![Mock Up](docs/readme_images/homepage.JPG)
 
-## Table of Contents
 
-- [Arabian Burger](#arabian-burger)
-  - [Table of Contents](#table-of-contents)
-- [User-Experience-Design](#user-experience-design)
-  - [The-Strategy-Plane](#the-strategy-plane)
-    - [Site-Goals](#site-goals)
-    - [Agile Planning](#agile-planning)
-      - [Epics](#epics)
-      - [User Stories](#user-stories)
-  - [The-Scope-Plane](#the-scope-plane)
-  - [The-Structure-Plane](#the-structure-plane)
-    - [Features](#features)
-    - [Database-Design](#database-design)
-    - [Security](#security)
-  - [Technolgies](#technolgies)
-  - [Testing](#testing)
-  - [Deployment](#deployment)
-    - [Version Control](#version-control)
-    - [Heroku Deployment](#heroku-deployment)
-    - [Run Locally](#run-locally)
-    - [Fork Project](#fork-project)
-  - [Credits](#credits)
 
 # User-Experience-Design
 
@@ -165,7 +143,7 @@ The navigation menu is displayed on all pages and drops down into a hamburger me
 
 Implementation:
 
-**Home Page**
+## Home Page
 
 The home page contains a three sliding Burger sandwitch images for the most ordered burger sandwitchs  and the restaurant information at the top of the page. This will immediately make it evident to the user, what the purpose of the website is.
 
@@ -177,7 +155,7 @@ Under the information section are two buttons, ' booking' and ' Menus'. These bu
 
 
 
-**Menu Page**
+## Menu Page
 
 A  menu page was implemented to allow staff users to create new menus via the backend admin panel. This will allow staff the ability to quickly update menus when they have made changes to the food being offered.
 
@@ -191,7 +169,7 @@ A menu page has been implemented to allow users to see the current active menus 
 
 Implementation:
 
-**Create booking page**
+## Booking page
 
 A booking page was implemented with a form that takes in the customer details and enables the user to easily make a booking through the UI.
 
@@ -204,7 +182,7 @@ Extensive logic was added to the form validation to ensure that not only is ther
 
 Implementation:
 
-**Display booking page**
+## Display booking page
 
 A Display booking page was implemented to show the booking that has been made by the user. This will allow the user to view their upcoming bookings when needed.
 
@@ -216,7 +194,7 @@ For restaurant staff users, all bookings will be available to display so that st
 
 Implementation:
 
-**Edit & Deleting Booking Page**
+## Edit & Deleting Booking Page
 
 On the display booking page, by clicking on the booking, the edit and deleting page will show, giving the user the ability to edit or delete their booking, by clicking the edit or delete buttom another form page will open with the full details of the booking giving the user the ability to edit or delete the booking. This will allow the user to easily manage their own booking.
 
