@@ -157,10 +157,6 @@ Tasks:
 
 ### Features
 
-``USER STORY - As a developer, I need to create the navbar so that users can navigate the website from any device``
-
-Implementation:
-
 **Navigation Menu**
 
 The Navigation contains links for Home, Bookings, Menus and has allauth options.
@@ -175,19 +171,11 @@ The home page contains a three sliding Burger sandwitch images for the most orde
 
 Under the information section are two buttons, ' booking' and ' Menus'. These buttons will allow the user a quick way to the respective pages if they wish to make a booking or view the restaurants active menus.
 
-The last section of the home page contains a google map, marking the location of the restaurant and the opening hours of the restaurant. This will allow the user to locate the restaurant and operating times.
 
 ![Hero Image](docs/readme_images/homepage.JPG)
 
 
-Implementation:
 
-**Footer**
-
-A footer has been added to the bottom of the site, this contains a Twitter and Facebook link so that users can follow the restaurant on social media if they want to keep up to date with special offers not advertised on the website. These icons have aria-labels added to ensure users with assistive screen reading technology know what the purpose of the links are for. They also open in new tabs as they lead users away from the site.
-
-
-Implementation:
 
 **Menu Page**
 
