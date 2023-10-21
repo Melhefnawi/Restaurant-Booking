@@ -54,7 +54,7 @@ All projects were assigned to epics, prioritized under the labels, Must have, sh
 
 The Kanban board was created using github projects and can be viewed to see more information on the project cards. All stories except the documentation tasks have a full set of acceptance criteria in order to define the functionality that marks that story as complete.
 
-![Kanban image](docs/readme_images/kanban.JPG)
+![Kanban image](docs/readme_images/Kanban.JPG)
 
 #### Epics
 
