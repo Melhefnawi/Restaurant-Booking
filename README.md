@@ -368,4 +368,4 @@ Most commonly, forks are used to either propose changes to someone else's projec
 
 ## Credits
 
-The HTML/CSS file were used from the I think Therefore I can BLOG project. 
+The HTML/CSS file were used from the ```I think Therefore I can BLOG``` project. 
