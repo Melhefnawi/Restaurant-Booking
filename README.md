@@ -1,9 +1,8 @@
 # Arabian Burger
 
-Sizzle and Steak is a fictional restaurant located beside the sea in County Antrim, Northern Ireland. The app is a restaurant management system designed to allow staff to easily manage the menus and bookings. It also provides customers with a simple, easy to use booking system where they can view and manage their own reservations.
-The live link can be found here: [Live Site - Sizzle and Steak](https://sizzle-and-steak.onrender.com/)
+Arabian Burger is a Burger restaurant located beside the sea in County Antrim, Northern Ireland. The app is a restaurant management system designed to allow staff to easily manage the menus and bookings. It also provides customers with a simple, easy to use booking system where they can view and manage their own reservations.
 
-![Mock Up](docs/readme_images/mockup.PNG)
+![Mock Up](docs/readme_images/homepage.JPG)
 
 ## Table of Contents
 
