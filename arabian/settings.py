@@ -32,7 +32,7 @@ DEBUG = False
 
 
 ALLOWED_HOSTS = ['8000-melhefnawi-restaurant-bo-6fpyzyk2q1.us2.codeanyapp.com',
-    'arabian.herokuapp.com', 'localhost', 'arabian-8c3cc574e38b.herokuapp.com']
+                 'arabian.herokuapp.com', 'localhost', 'arabian-8c3cc574e38b.herokuapp.com']
 
 # Application definition
 
@@ -93,16 +93,16 @@ WSGI_APPLICATION = 'arabian.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-   # DATABASES = {
-         #   'default': {
-           #     'ENGINE': 'django.db.backends.sqlite3',
-           #     'NAME': BASE_DIR / 'db.sqlite3',
-           #     }
-           # }
-
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-  }
+  'default': {
+     'ENGINE': 'django.db.backends.sqlite3',
+     'NAME': BASE_DIR / 'db.sqlite3',
+    }
+ }
+
+#DATABASES = {
+#   'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
