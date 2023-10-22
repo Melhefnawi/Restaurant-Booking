@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views import generic, View
 from .models import Booking_details, Menu
-from .forms import BookingForms, Pre_Booking
+from .forms import BookingForms
 from random import *
 import urllib.request
 import urllib.error
