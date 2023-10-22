@@ -7,13 +7,7 @@ import urllib.request
 import urllib.error
 # Create your views here.
 
-''' Create a View for Booking_List Model '''
 
-class BookingList(generic.ListView):
-
-    model = Menu
-    queryset = Menu.objects.all()
-    template_name = 'booking/homepage.html'
 
 # Create a View for the Menu Model 
 
