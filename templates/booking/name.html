@@ -11,8 +11,15 @@
         <button type="submit" class="btn btn-signup btn-lg">submit</button>
         
         <button class="btn btn-danger btn-lg">Previous Booking</button>
-       
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
       </form>
+
     </div>
   </div>
 </div>

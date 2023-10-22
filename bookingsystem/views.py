@@ -5,11 +5,13 @@ from .forms import BookingForms
 from random import *
 import urllib.request
 import urllib.error
+from django.contrib import messages
 # Create your views here.
 
 
 
 # Create a View for the Menu Model 
+
 
 class MenuList(generic.ListView):
 
@@ -55,6 +57,7 @@ class Name(View):
             booking_form = BookingForms(request.POST)
             if booking_form.is_valid():
                 booking_form.save()
+                messages.success(request, 'Form submission successful')
                 Booking_details.objects.filter(
                     Phone_Number=Phone_no).update(Slug=Phone_no)
                 bookings_user = get_object_or_404(
@@ -111,6 +114,7 @@ class EditBooking(View):
 
         if booking_form_1.is_valid():
             booking_form_1.save()
+            messages.success(request, "Profile details updated.")
 
         else:
             booking_form_1 = BookingForms()
@@ -139,6 +143,7 @@ class DeleteBooking(View):
         booking_ins = get_object_or_404(Booking_details, Slug=slug)
 
         booking_ins.delete()
+        messages.error(request, "Document deleted.")
 
         queryset = Menu.objects.all()
 
