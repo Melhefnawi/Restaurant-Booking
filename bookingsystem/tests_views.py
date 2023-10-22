@@ -1,77 +1,53 @@
 from django.test import TestCase
 
-from .forms import BookingForms
+from .models import Booking_details
 
 # Create your tests here.
 
 
 class TestViews(TestCase):
 
-    def test_first_name_is_required(self):
+    def test_menulist(self):
+        response = self.client.get('/menu')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'booking/menu.html')
 
-        form = BookingForms({'First_Name': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('First_Name', form.errors.keys())
-        self.assertEqual(form.errors['First_Name']
-                         [0], 'This field is required.')
+    def test_name(self):
+        response = self.client.get('/booking')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "booking/name.html")
 
-    def test_last_name_is_required(self):
+    def test_showbooking(self):
+        booking_test = Booking_details.objects.create(
+            First_Name='Mo', Last_Name='Mo', Slug=4)
+        response = self.client.get(
+            f'/booking/show_booking/{booking_test.Slug}')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'booking/show_booking.html')
 
-        form = BookingForms({'Last_Name': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('Last_Name', form.errors.keys())
-        self.assertEqual(form.errors['Last_Name']
-                         [0], 'This field is required.')
+    def test_bookingdetails(self):
+        booking_test = Booking_details.objects.create(
+            First_Name='Mo', Last_Name='Mo', Slug=4)
+        response = self.client.get(f'/{booking_test.Slug}')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'booking/booking_details.html')
 
-    def test_date_is_required(self):
+    def test_homepage(self):
+        response = self.client.get()
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'booking/homepage.html')
 
-        form = BookingForms({'Date': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('Date', form.errors.keys())
-        self.assertEqual(form.errors['Date'][0], 'This field is required.')
+    def test_editbooking(self):
+        booking_test = Booking_details.objects.create(
+            First_Name='Mo', Last_Name='Mo', Slug=4)
+        response = self.client.get(f'/booking/editbooking/{booking_test.Slug}')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'booking/editbooking.html')
 
-    def test_time_is_required(self):
-
-        form = BookingForms({'Time': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('Time', form.errors.keys())
-        self.assertEqual(form.errors['Time'][0], 'This field is required.')
-
-    def test_phone_number_is_required(self):
-
-        form = BookingForms({'Phone_Number': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('Phone_Number', form.errors.keys())
-        self.assertEqual(form.errors['Phone_Number']
-                         [0], 'This field is required.')
-
-    def test_phone_number_is_required(self):
-
-        form = BookingForms({'Phone_Number': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('Phone_Number', form.errors.keys())
-        self.assertEqual(form.errors['Phone_Number']
-                         [0], 'This field is required.')
-
-    def test_people_no_is_required(self):
-
-        form = BookingForms({'People_No': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('People_No', form.errors.keys())
-        self.assertEqual(form.errors['People_No']
-                         [0], 'This field is required.')
-
-    def test_email_is_required(self):
-
-        form = BookingForms({'Email': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('Email', form.errors.keys())
-        self.assertEqual(form.errors['Email']
-                         [0], 'This field is required.')
-
-
-    def test_fields_are_explicite_in_form_metaclass(self):
-
-        form = BookingForms()
-        self.assertEqual(form.Meta.fields, ('First_Name', 'Last_Name', 'Date',
-                                            'Time', 'Phone_Number', 'People_No', 'Email'))
+    def test_deletebooking(self):
+        booking_test = Booking_details.objects.create(
+            First_Name='Mo', Last_Name='Mo', Slug=4)
+        response = self.client.get(
+            f'/booking/deletebooking/{booking_test.Slug}')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'booking/deletebooking.html')
