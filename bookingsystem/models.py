@@ -4,6 +4,9 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
+# Booking details model to obtain the Booking details from 
+# User and store it in the Data base 
+
 
 class Booking_details(models.Model):
     Booking_Id = models.IntegerField(unique=True, null=True)
@@ -26,20 +29,7 @@ class Booking_details(models.Model):
     def __str__(self):
         return f"Booking Name: {self.First_Name} {self.Last_Name}"
 
-
-class Client (models.Model):
-    Booking = models.ForeignKey(Booking_details, on_delete=models.CASCADE)
-    First_Name = models.CharField(max_length=200)
-    Last_Name = models.CharField(max_length=200)
-    Email = models.EmailField()
-    Phone = models.IntegerField()
-
-    def __str__(self):
-        return f"Booking Name: {self.First_Name} + {self.Last_Name}"
-
-    class Meta:
-
-        ordering = ['-First_Name']
+# Menu Model to store the data related to Menu
 
 
 class Menu(models.Model):
