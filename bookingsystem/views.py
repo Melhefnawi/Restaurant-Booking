@@ -158,17 +158,4 @@ class DeleteBooking(View):
                                                          "photo3": photo3})
 
 
-class PreviousBooking(View):
 
-    def get(self, request, *args, **kwargs):
-
-        return render(request, 'booking/previousbook.html',
-                      {"form": Pre_Booking()})
-
-    def post(self, request, *args, **kwargs):
-
-        booking_1 = request.POST.get('Phone_Number')
-        booking_pre = get_list_or_404(Booking_details, Slug=booking_1)
-
-        return render(request, "booking/show_previous_booking.html",
-                      {"bookings": booking_pre})
