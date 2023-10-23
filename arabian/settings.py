@@ -33,7 +33,8 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = ['8000-melhefnawi-restaurant-bo-6fpyzyk2q1.us2.codeanyapp.com',
-                 'arabian.herokuapp.com', 'localhost', 'arabian-8c3cc574e38b.herokuapp.com']
+                 'arabian.herokuapp.com', 'localhost',
+                 'arabian-8c3cc574e38b.herokuapp.com']
 
 # Application definition
 
@@ -101,7 +102,7 @@ WSGI_APPLICATION = 'arabian.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #  'default': {
 #     'ENGINE': 'django.db.backends.sqlite3',
 #     'NAME': BASE_DIR / 'db.sqlite3',

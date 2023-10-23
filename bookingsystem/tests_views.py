@@ -53,4 +53,3 @@ class TestViews(TestCase):
         self.assertEqual(booking_test.approved, 0)
         self.assertEqual(booking_test.Time, null)
         self.assertTemplateUsed(response, 'booking/deletebooking.html')
-        

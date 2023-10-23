@@ -2,15 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404, get_list_or_40
 from django.views import generic, View
 from .models import Booking_details, Menu
 from .forms import BookingForms
-from random import *
 import urllib.request
 import urllib.error
 from django.contrib import messages
 
 
-
-
-# Create a View for the Menu Model 
+# Create a View for the Menu Model
 
 
 class MenuList(generic.ListView):
@@ -19,7 +16,7 @@ class MenuList(generic.ListView):
     queryset = Menu.objects.all()
     template_name = 'booking/menu.html'
 
-# Create a get and post method for the Booking Details 
+# Create a get and post method for the Booking Details
 
 
 class BookingDetails(View):
@@ -33,8 +30,8 @@ class BookingDetails(View):
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
 
-# Create a get and post method for the Name class which get the data 
-# from the booking form in the booking tab 
+# Create a get and post method for the Name class which get the data
+# from the booking form in the booking tab
 
 
 class Name(View):
@@ -68,7 +65,7 @@ class Name(View):
             else:
                 booking_form = BookingForms()
 
-# create Showbooking class to show booking after being created 
+# create Showbooking class to show booking after being created
 
 
 class ShowBooking(View):
@@ -77,7 +74,8 @@ class ShowBooking(View):
 
         return render(request, "booking/show_booking.html")
 
-# Create Homapge class View to render the images from the Menu model in the Home page 
+# Create Homapge class View to render the images from the Menu model in
+# the Home page
 
 
 class HomePage(View):
@@ -93,7 +91,7 @@ class HomePage(View):
         return render(request, "booking/homepage.html",
                       {"photo1": photo1, "photo2": photo2, "photo3": photo3})
 
-# Create Edit view to show the edit of the Booking 
+# Create Edit view to show the edit of the Booking
 
 
 class EditBooking(View):
@@ -125,7 +123,7 @@ class EditBooking(View):
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
 
-# Create delete view to show the edit of the Booking 
+# Create delete view to show the delete of the Booking
 
 
 class DeleteBooking(View):
@@ -155,6 +153,3 @@ class DeleteBooking(View):
         return render(request, "booking/homepage.html", {"photo1": photo1,
                                                          "photo2": photo2,
                                                          "photo3": photo3})
-
-
-
