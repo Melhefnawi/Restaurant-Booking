@@ -1,6 +1,6 @@
 # Arabian Burger
 
-Arabian Burger is a Burger restaurant located beside the sea in County Antrim, Northern Ireland. The app is a restaurant management system designed to allow staff to easily manage the menus and bookings. It also provides customers with a simple, easy to use booking system where they can view and manage their own reservations.
+Arabian Burger is a Burger restaurant. The app is a restaurant management system designed to allow staff to easily manage the menus and bookings. It also provides customers with a simple, easy to use booking system where they can view and manage their own reservations.
 
 ![Mock Up](docs/readme_images/homepage.JPG)
 
