@@ -1,16 +1,16 @@
 {% extends 'booking/base.html' %} {% block content %}
 {% load crispy_forms_tags %}
 
+<!-- A crspy form to enter your booking details to book a table-->
 <div class="container">
   <div class="row">
     <div class="col card mb-4 left top">
       <form method="POST" style="margin-top: 1.3em">
         {{booking_form|crispy}} {%csrf_token%}
-        <br />
-
-        <button type="submit" class="btn btn-info btn-lg">submit</button>
-        
-        <button class="btn btn-danger btn-lg">Previous Booking</button>
+            <br />
+            <button type="submit" class="btn btn-info btn-lg">submit</button>
+            <button class="btn btn-danger btn-lg">Previous Booking</button>
+            <!-- A message to confirm the submition of the booking -->
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}

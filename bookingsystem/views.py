@@ -143,7 +143,7 @@ class DeleteBooking(View):
         booking_ins = get_object_or_404(Booking_details, Slug=slug)
 
         booking_ins.delete()
-        messages.error(request, "Document deleted.")
+        messages.error(request, "Booking deleted.")
 
         queryset = Menu.objects.all()
 

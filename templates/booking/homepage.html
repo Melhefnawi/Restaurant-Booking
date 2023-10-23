@@ -1,10 +1,12 @@
 {% extends "booking/base.html" %} {% block content %}
 
+<!-- Sliding view for the homepage, showing the different varities of burger  -->
 <div
   id="carouselExampleAutoplaying"
   class="carousel slide"
   data-bs-ride="carousel"
 >
+<!-- rendering the burger images from Menu Model-->
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="{{ photo1.Featured_image.url }} " class="d-block w-100" alt="..." />

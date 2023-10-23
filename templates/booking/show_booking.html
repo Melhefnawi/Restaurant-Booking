@@ -5,10 +5,9 @@
 <div class="container-fluid">
     <div class="row">
 
-        <!-- Booking Entries Column -->
+        <!-- A card to show the details of the booking after submitting the form -->
         <div class="col-12 mt-3 left">
             <div class="row">
-               
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
@@ -20,16 +19,18 @@
                                 <img class="card-img-top" src=" {{ bookings.featured_image.url }}">
                                 {% endif %}
                                 <div class="image-flash">
-                                    <p class="author">Booking Name: {{ bookings.First_Name }}</p>
+                                    <p class="author">Booking Name: {{ bookings.First_Name }} {{bookings.Last_Name}}</p>
                                 </div>
                             </div>
                             <a href="{% url 'Booking_details' bookings.Slug %}" class="post-link">
                                 <h2 class="card-title">{{ bookings.First_Name }}</h2>
                                 <p class="card-text">{{ bookings.Last_Name }}</p>
+                                <p class="card-text">Email: {{ bookings.Email}}</p>
+                                <p class="card-text">Phone Number: {{ bookings.Phone_Number}}</p>
                             </a>
                             <hr />
-                            <p class="card-text text-muted h6">Booking Date:{{bookings.Date}} 
-                                People No:{{ bookings.People_No }}</p>
+                            <p class="card-text text-muted h6">Booking Date: {{bookings.Date}} 
+                                       People No: {{ bookings.People_No }}</p>
                         </div>
                     </div>
                 </div>
