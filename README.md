@@ -278,7 +278,7 @@ Environment variables were stored in an env.py for local development for securit
 
 ## Testing
 
-Test cases and results can be found in the [TESTING.md](TESTING.md) file. This was moved due to the size of the file.
+Test cases and results can be found in the testing file. This was moved due to the size of the file.
 
 ## Deployment
 
@@ -320,7 +320,7 @@ The site was deployed to Heroku. The steps to deploy are as follows:
 
 The app should now be deployed.
 
-The live link can be found here: [Live Site](https://sizzle-and-steak.onrender.com/)
+
 
 ### Run Locally
 
