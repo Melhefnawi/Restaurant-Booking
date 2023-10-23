@@ -63,7 +63,7 @@ body {
     color: black;
     margin: 4px;
     text-transform: uppercase;
-    background-color: aqua;
+    
 }
 
 .masthead {
@@ -76,9 +76,10 @@ body {
 }
 
 .masthead-text {
-    background-color: #445261;
-    color: white;
+    color: grey;
     position: relative;
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 .masthead-image {

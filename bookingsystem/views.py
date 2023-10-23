@@ -6,7 +6,7 @@ from random import *
 import urllib.request
 import urllib.error
 from django.contrib import messages
-# Create your views here.
+
 
 
 

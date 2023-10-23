@@ -23,7 +23,7 @@ class TestViews(TestCase):
         response = self.client.get(
             f'/booking/show_booking/{booking_test.Slug}')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'booking/show_booking.html')
+        self.assertTemplateUsed(response, "booking/show_booking.html")
 
     def test_bookingdetails(self):
         booking_test = Booking_details.objects.create(
@@ -35,7 +35,7 @@ class TestViews(TestCase):
     def test_homepage(self):
         response = self.client.get()
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'booking/homepage.html')
+        self.assertTemplateUsed(response, '/booking/homepage.html')
 
     def test_editbooking(self):
         booking_test = Booking_details.objects.create(
@@ -50,4 +50,7 @@ class TestViews(TestCase):
         response = self.client.get(
             f'/booking/deletebooking/{booking_test.Slug}')
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(booking_test.approved, 0)
+        self.assertEqual(booking_test.Time, null)
         self.assertTemplateUsed(response, 'booking/deletebooking.html')
+        
