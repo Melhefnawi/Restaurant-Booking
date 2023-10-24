@@ -12,7 +12,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'booking/menu.html')
 
-    def test_name(self):
+    def test_bookingform(self):
         response = self.client.get('/booking')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "booking/name.html")

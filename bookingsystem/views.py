@@ -123,7 +123,7 @@ class EditBooking(View):
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
 
-# Create delete view to show the delete of the Booking
+# Create delete view with get and post to delete the Booking
 
 
 class DeleteBooking(View):
@@ -144,7 +144,7 @@ class DeleteBooking(View):
         messages.error(request, "Booking deleted.")
 
         queryset = Menu.objects.all()
-
+# getting images from Menu model to render them in the homepage template
         photo1 = get_object_or_404(queryset, Meal_Name="Cheese Burger")
         photo2 = get_object_or_404(queryset, Meal_Name="Double Cheese Burger")
         photo3 = get_object_or_404(
