@@ -165,9 +165,6 @@ A menu page has been implemented to allow users to see the current active menus 
 
 
 
-``USER-STORY - As a user, I would like to be able to create a new booking when I want to visit the restaurant``
-
-Implementation:
 
 ## Booking page
 
@@ -178,9 +175,7 @@ Extensive logic was added to the form validation to ensure that not only is ther
 
 ![Create Booking](docs/readme_images/Bookingpage.JPG)
 
-``USER-STORY - As a user, I would like to view my bookings when I need to check the information``
 
-Implementation:
 
 ## Display booking page
 
@@ -190,9 +185,7 @@ For restaurant staff users, all bookings will be available to display so that st
 
 ![Manage Bookings](docs/readme_images/displaybooking.JPG)
 
-``USER-STORY - As a user, I would like to be able to edit a booking so that I can make changes when needed``
 
-Implementation:
 
 ## Edit & Deleting Booking Page
 
