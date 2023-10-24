@@ -34,7 +34,7 @@ class BookingDetails(View):
 # from the booking form in the booking tab
 
 
-class Name(View):
+class BookingForm(View):
 
     def get(self, request, *args, **kwargs):
 
