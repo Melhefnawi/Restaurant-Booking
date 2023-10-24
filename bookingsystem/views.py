@@ -30,15 +30,15 @@ class BookingDetails(View):
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
 
-# Create a get and post method for the Name class which get the data
-# from the booking form in the booking tab
+# Create a get and post method for the Booking_form class which get the data
+# from the booking form in the booking tab and save it to the Database 
 
 
 class BookingForm(View):
 
     def get(self, request, *args, **kwargs):
 
-        return render(request, "booking/name.html",
+        return render(request, "booking/bookingform.html",
                       {"booking_form": BookingForms()})
 
     def post(self, request, *args, **kwargs):
