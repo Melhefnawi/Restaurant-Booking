@@ -16,7 +16,7 @@ class MenuList(generic.ListView):
     queryset = Menu.objects.all()
     template_name = 'booking/menu.html'
 
-# Create a get and post method for the Booking Details
+# Create a get  method for the Booking Details class 
 
 
 class BookingDetails(View):
