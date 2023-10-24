@@ -47,6 +47,7 @@ class BookingForm(View):
 
         try:
             bookings_user = get_object_or_404(Booking_details, Slug=Phone_no)
+            messages.info(request, "Previous Booking")
             return render(request, "booking/show_booking.html",
                           {"bookings": bookings_user})
 
