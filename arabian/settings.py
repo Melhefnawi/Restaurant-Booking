@@ -29,7 +29,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = false
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['8000-melhefnawi-restaurant-bo-6fpyzyk2q1.us2.codeanyapp.com',
