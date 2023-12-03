@@ -110,12 +110,12 @@ WSGI_APPLICATION = 'arabian.wsgi.application'
 # }
 
 DATABASES = {
-   'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
-DATABASE_URL = os.getenv('DATABASE_URL')
-DATABASES = {
-    'default': dj_database_url.config(),
-}
+     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+ }
+#DATABASE_URL = os.getenv('DATABASE_URL')
+#DATABASES = {
+#    'default': dj_database_url.config(),
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
