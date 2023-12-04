@@ -17,7 +17,7 @@ class BookingForms(forms.ModelForm):
                   'Time', 'Phone_Number', 'People_No', 'Email', )
         widgets = {
             'Date': forms.DateInput(
-                format=('%d/%m/%Y'),
+                format=('%b %d, %Y'),
                 attrs={'class': 'form-control', 
                        'placeholder': 'Select a date',
                        'type': 'date'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
