@@ -22,6 +22,12 @@ class BookingForms(forms.ModelForm):
                        'placeholder': 'Select a date',
                        'type': 'date'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
                       }),
+            'Time': forms.TimeInput(
+                format=('%H:%M'),
+                attrs={'class': 'form-control', 
+                       'placeholder': 'Select a time',
+                       'type': 'time'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
+                      }),
         }        
 
 
