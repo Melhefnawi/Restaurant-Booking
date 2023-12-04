@@ -54,7 +54,7 @@ class BookingForm(View):
         except:
             booking_form = BookingForms(request.POST)
             if booking_form.is_valid():
-                booking_form.save(commit=False)
+                booking_form.save()
                 messages.success(request, 'Form submission successful')
                 Booking_details.objects.filter(
                     Phone_Number=Phone_no).update(Slug=Phone_no)
