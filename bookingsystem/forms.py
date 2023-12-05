@@ -17,10 +17,10 @@ class BookingForms(forms.ModelForm):
                   'Time', 'Phone_Number', 'People_No', 'Email', )
         widgets = {
             'Date': forms.DateInput(
-                format=('%b %d, %Y'),
+                format=('%Y-%m-%d'),
                 attrs={'class': 'form-control', 
                        'placeholder': 'Select a date',
-                       'type': 'date'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
+                       'type': 'Date'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
                       }),
             'Time': forms.TimeInput(
                 format=('%H:%M'),
