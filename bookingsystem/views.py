@@ -68,6 +68,18 @@ class BookingForm(View):
 
 # create Showbooking class to show booking after being created
 
+class ShowAllBooking(View):
+
+    def get(self, request, *args, **kwargs):
+
+        queryset = Booking_details.objects.all()
+
+        all_booking = get_object_or_404(queryset)
+
+        return render(request, "booking/show_all_booking.html",
+                      {"bookings": all_booking, })
+
+       
 
 class ShowBooking(View):
 
