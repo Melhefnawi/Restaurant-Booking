@@ -27,6 +27,19 @@
                                     <a href="{% url 'delete_booking' booking.Slug %}">
                                     <input class="btn btn-danger" type="submit" value="Delete">
                                     </a>
+                                    {% if user.is_superuser %}
+                                    <a href="{% url 'approve_booking' booking.Slug %}">
+                                    <input class="btn btn-success" type="submit" value="Approve">
+                                    </a>
+                                    {% endif %}
+                                    {% if messages %}
+                                    <!-- A message to confirm the delete process of the booking -->
+                                    <ul class="messages">
+                                    {% for message in messages %}
+                                    <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                                    {% endfor %}
+                                    </ul> 
+                                    {% endif %}
                             </div>
                         </div>
                     </div>   

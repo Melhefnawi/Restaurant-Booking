@@ -1,0 +1,27 @@
+{% extends "booking/base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<!-- A form to show the details of the booking before the deleting process -->
+<div class="container">
+    <div class="row">
+        <div class="col card mb-4 left top">
+            <form method="POST" style="margin-top: 1.3em">
+                {{form|crispy}} {%csrf_token%}
+                <br />
+                <button type="submit" class="btn btn-success btn-lg"> Approve</button>
+                {% if messages %}
+                <!-- A message to confirm the delete process of the booking -->
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

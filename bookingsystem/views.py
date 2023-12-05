@@ -30,6 +30,7 @@ class BookingDetails(View):
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
 
+    
 # Create a get and post method for the Booking_form class which get the data
 # from the booking form in the booking tab and save it to the Database 
 
@@ -155,7 +156,7 @@ class DeleteBooking(View):
         messages.error(request, "Booking deleted.")
 
         queryset = Menu.objects.all()
-# getting images from Menu model to render them in the homepage template
+        # getting images from Menu model to render them in the homepage template
         photo1 = get_object_or_404(queryset, Meal_Name="Cheese Burger")
         photo2 = get_object_or_404(queryset, Meal_Name="Double Cheese Burger")
         photo3 = get_object_or_404(
@@ -164,3 +165,34 @@ class DeleteBooking(View):
         return render(request, "booking/homepage.html", {"photo1": photo1,
                                                          "photo2": photo2,
                                                          "photo3": photo3})
+
+
+class ApproveBooking(View):
+
+    def get(self, request, slug, *args, **kwargs):
+
+        queryset = Booking_details.objects.all()
+        book_detail = get_object_or_404(queryset, Slug=slug)
+        booking_form_2 = BookingForms(instance=book_detail)
+
+        return render(request, 'booking/approvebooking.html', {"form": booking_form_2})
+
+    def post(self, request, slug, *args, **kwargs):
+
+        Booking_details.objects.filter(Slug=slug).update(approved=True)
+        
+        messages.success(request, "The booking is approved")
+
+        queryset = Menu.objects.all()
+        # getting images from Menu model to render them in the homepage template
+        photo1 = get_object_or_404(queryset, Meal_Name="Cheese Burger")
+        photo2 = get_object_or_404(queryset, Meal_Name="Double Cheese Burger")
+        photo3 = get_object_or_404(
+            queryset, Meal_Name="Beef Burger with mushroom")
+
+        return render(request, "booking/homepage.html", {"photo1": photo1,
+                                                         "photo2": photo2,
+                                                         "photo3": photo3})                  
+
+
+        
