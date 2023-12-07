@@ -29,7 +29,7 @@ class BookingForms(forms.ModelForm):
                 format=("%H:%M"),
                 attrs={'class': 'form-control', 
                        'placeholder': 'Select a date',
-                       'type': 'time'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
+                       'type': 'time'  
                       }),
                 
         }        
