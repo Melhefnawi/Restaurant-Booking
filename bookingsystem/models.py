@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-
+import datetime
+from django.core.validators import MinValueValidator
 # Create your models here.
 
 # Booking details model to obtain the Booking details from 
@@ -15,7 +16,7 @@ class Booking_details(models.Model):
     Last_Name = models.CharField(max_length=200)
     Email = models.EmailField(null=True)
     Phone_Number = models.IntegerField(null=True)
-    Date = models.DateField()
+    Date = models.DateField(validators=[MinValueValidator(datetime.date.today)])
     Time = models.TimeField()
     People_No = models.IntegerField()
     body = models.TextField(null=True)

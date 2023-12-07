@@ -20,7 +20,7 @@ class BookingForms(forms.ModelForm):
                 format=('%Y-%m-%d'),
                 attrs={'class': 'form-control', 
                        'placeholder': 'Select a date',
-                       'type': 'Date'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
+                       'type': 'Date',  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
                       }),
             'Time': forms.TimeInput(
                 format=('%H:%M'),
