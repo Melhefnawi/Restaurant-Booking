@@ -1,9 +1,9 @@
 # The Arabian Burger -  Testing
 
-![The Arabian Burger shown on a variety of screen sizes]
- (docs/readme_images/Desktop.JPG)
- (docs/readme_images/Ipad.JPG)
- (docs/readme_images/Mobile.JPG)
+![The Arabian Burger shown on a variety of screen sizes](docs/readme_images/Desktop.JPG)
+![The Arabian Burger shown on a variety of screen sizes](docs/readme_images/Ipad.JPG)
+![The Arabian Burger shown on a variety of screen sizes](docs/readme_images/Mobile.JPG)
+ 
 
 Visit the deployed site: [The Arabian Burger](https://arabian-8c3cc574e38b.herokuapp.com/)
 
