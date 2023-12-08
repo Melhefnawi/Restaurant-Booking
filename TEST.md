@@ -1,14 +1,17 @@
-# The Quiz Arms -  Testing
+# The Arabian Burger -  Testing
 
-![The Quiz Arms shown on a variety of screen sizes](assets/images/the-quiz-arms.png)
+![The Arabian Burger shown on a variety of screen sizes]
+ (docs/readme_images/Desktop.JPG)
+ (docs/readme_images/Ipad.JPG)
+ (docs/readme_images/Mobile.JPG)
 
-Visit the deployed site: [The Quiz Arms](https://kera-cudmore.github.io/TheQuizArms/)
+Visit the deployed site: [The Arabian Burger](https://arabian-8c3cc574e38b.herokuapp.com/)
 
 - - -
 
 ## CONTENTS
 
-- [The Quiz Arms -  Testing](#the-quiz-arms----testing)
+- [The Arabian Burger -  Testing](#the-arabian-burger----testing)
   - [CONTENTS](#contents)
   - [AUTOMATED TESTING](#automated-testing)
     - [W3C Validator](#w3c-validator)
