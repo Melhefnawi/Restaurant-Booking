@@ -1,11 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 # Create your models here.
 
 # Booking details model to obtain the Booking details from 
 # User and store it in the Data base 
+
 
 
 class Booking_details(models.Model):
@@ -15,7 +19,7 @@ class Booking_details(models.Model):
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
     Email = models.EmailField(null=True)
-    Phone_Number = models.CharField(max_length=15, null=True)
+    Phone_Number = PhoneNumberField(blank=True, null=True, region=('IE'),max_length=(18))
     Date = models.DateField()
     Time = models.TimeField()
     People_No = models.IntegerField()

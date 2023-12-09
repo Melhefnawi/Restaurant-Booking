@@ -5,6 +5,7 @@ from django.utils.timezone import now
 from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions)
+from phonenumber_field.widgets import PhoneNumberPrefixWidget    
 
 # Creating the Booking_Form 
 
@@ -24,6 +25,7 @@ class BookingForms(forms.ModelForm):
         fields = ('First_Name', 'Last_Name', 'Date',
                   'Time', 'Phone_Number', 'People_No', 'Email', )
         widgets = {
+            'Phone_Number': PhoneNumberPrefixWidget(),
             'Date' : FutureDateInput(),
             'Time': forms.DateInput(
                 format=("%H:%M"),
