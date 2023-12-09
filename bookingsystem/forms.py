@@ -31,6 +31,10 @@ class BookingForms(forms.ModelForm):
                        'placeholder': 'Select a date',
                        'type': 'time'  
                       }),
+            'Phone_Number' : forms.NumberInput(attrs={'type' :'number'}),
+            'People_No' : forms.NumberInput(attrs={'type' :'number'}),
+            'Email': forms.EmailInput(attrs = {'type':'email'}),
+
                 
         }        
 
