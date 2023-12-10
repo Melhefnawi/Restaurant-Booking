@@ -19,7 +19,7 @@ class Booking_details(models.Model):
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
     Email = models.EmailField(null=True)
-    Phone_Number = models.TextField(null=True)                         #PhoneNumberField(blank=True, null=True)
+    Phone_Number = models.TextField(null=True) #PhoneNumberField(blank=True, null=True, region=('IE'), max_length=(18))                                              
     Date = models.DateField()
     Time = models.TimeField()
     People_No = models.IntegerField()
