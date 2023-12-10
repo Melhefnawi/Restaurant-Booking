@@ -8,7 +8,7 @@ urlpatterns = [
     path('menu', views.MenuList.as_view(), name='menu'),
     path('<slug:slug>', views.BookingDetails.as_view(),
          name='Booking_details'),
-    path('booking/show_booking', views.ShowBooking.as_view(),
+    path('booking/show_booking/', views.ShowBooking.as_view(),
          name='Show_Booking'),
     
     path('booking/editbooking/<slug:slug>', views.EditBooking.as_view(), name='edit_booking'),

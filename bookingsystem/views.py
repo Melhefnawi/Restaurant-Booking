@@ -43,34 +43,35 @@ class BookingForm(View):
                       {"booking_form": BookingForms()})
 
     def post(self, request, *args, **kwargs):
-
+        
         Phone_no = request.POST.get('Phone_Number')
-        
-        print(Phone_no)
-        
+
         if Booking_details.objects.filter(Phone_Number=Phone_no).exists():
             messages.info(request, "Previous Booking")
-            bookings_user = get_object_or_404(Booking_details, Phone_Number=Phone_no)
-            messages.info(request, "Previous Booking")
+            booking = request.POST.get('Phone_Number')
+            bookings = get_object_or_404(Booking_details, Slug=booking)
             return render(request, "booking/show_booking.html",
-                        {"bookings": bookings_user})
+                        {"bookings": bookings})
         else:
             
             booking_form = BookingForms(request.POST)
             if booking_form.is_valid():
                 booking_form.save()
+                messages.success(request, 'Form submission successful')
+                
+                bookings = Booking_details.objects.all()
+                Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
+             
+            
 
-        t = Booking_details.objects.get(request.POST.get('Phone_Number'))
-        t.Slug = Phone_no
-        t.save()
-        messages.success(request, 'Form submission successful')
-        bookings_user = get_object_or_404(
-            Booking_details, Phone_Number = Phone_no)
+        booking = request.POST.get('Phone_Number')
+        bookings = get_object_or_404(Booking_details, Phone_Number=booking)
         
+
         return render(request, "booking/show_booking.html",
-                            {"bookings": bookings_user})
-
-        
+                    {"bookings": bookings})
+              
+            
 
 # create Showbooking class to show booking after being created
 
