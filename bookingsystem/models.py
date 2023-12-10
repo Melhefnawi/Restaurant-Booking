@@ -5,6 +5,7 @@ from phone_field import PhoneField
 from phonenumber_field.modelfields import PhoneNumberField
 
 
+
 # Create your models here.
 
 # Booking details model to obtain the Booking details from 
@@ -13,7 +14,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Booking_details(models.Model):
-    
     
     Slug = models.SlugField(unique=True, null=True)
     First_Name = models.CharField(max_length=200)
