@@ -5,6 +5,7 @@ from .forms import BookingForms
 import urllib.request
 import urllib.error
 from django.contrib import messages
+import re
 
 
 # Create a View for the Menu Model
@@ -46,38 +47,38 @@ class BookingForm(View):
 
         Phone_no = request.POST.get('Phone_Number')
 
-        try: 
+        if  Phone_no.startswith("+"):
+            messages.success(request, 'Please enter a valid data Phone numer without any sign ')
+            return render(request, "booking/bookingform.html", {"booking_form": BookingForms()}) 
+                      
+                
 
-                if Booking_details.objects.filter(Phone_Number=Phone_no).exists():
-                    messages.info(request, "Previous Booking")
-                    booking = request.POST.get('Phone_Number')
-                    bookings = get_object_or_404(Booking_details, Slug=booking)
-                    return render(request, "booking/show_booking.html",
-                                {"bookings": bookings})
-                else:
-                    
-                    booking_form = BookingForms(request.POST)
-                    if booking_form.is_valid():
-                        booking_form.save()
-                        messages.success(request, 'Form submission successful')
-                        
-                        bookings = Booking_details.objects.all()
-                        Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
-                    
-                    
        
 
-                        booking = request.POST.get('Phone_Number')
-                        bookings = get_object_or_404(Booking_details, Phone_Number=booking)
-                        
+        elif Booking_details.objects.filter(Phone_Number=Phone_no).exists():
+            messages.info(request, "Previous Booking")
+            booking = request.POST.get('Phone_Number')
+            bookings = get_object_or_404(Booking_details, Slug=booking)
+            return render(request, "booking/show_booking.html",
+                        {"bookings": bookings})
+        else:
+                    
+            booking_form = BookingForms(request.POST)
+            if booking_form.is_valid():
+                booking_form.save()
+                messages.success(request, 'Form submission successful')
+                
+                bookings = Booking_details.objects.all()
+                Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
+            
+                booking = request.POST.get('Phone_Number')
+                bookings = get_object_or_404(Booking_details, Phone_Number=booking)
+                
 
-                        return render(request, "booking/show_booking.html",
-                                    {"bookings": bookings})
+                return render(request, "booking/show_booking.html",
+                            {"bookings": bookings})
 
-        except:
-                messages.success(request, 'Please enter a valid data Phone numer without any sign ')
-                return render(request, "booking/bookingform.html",
-                        {"booking_form": BookingForms()})   
+          
 
 
 # create Showbooking class to show booking after being created

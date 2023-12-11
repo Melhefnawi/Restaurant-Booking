@@ -27,7 +27,7 @@ class BookingForms(forms.ModelForm):
         widgets = {
             #'Phone_Number_0': PhoneNumberPrefixWidget(initial='IE'),
             "Phone_Number": forms.TextInput(attrs={
-                  "placeholder": "Phone number (with a country code) ",
+                  "placeholder": "Phone number (without a country code or any sign) ",
                   "type": "tel",}),
                  # "minlength": 5,
                  #   "maxlength": 15,}),
