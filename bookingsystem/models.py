@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from phone_field import PhoneField
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import RegexValidator
 
 
 
@@ -19,7 +20,8 @@ class Booking_details(models.Model):
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
     Email = models.EmailField(null=True)
-    Phone_Number = models.TextField(null=True) #PhoneNumberField(blank=True, null=True, region=('IE'), max_length=(18))                                              
+    Phone_Number = models.TextField(null=True, max_length=100)
+                                              
     Date = models.DateField()
     Time = models.TimeField()
     People_No = models.IntegerField()

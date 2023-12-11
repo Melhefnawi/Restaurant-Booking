@@ -25,12 +25,11 @@ class BookingForms(forms.ModelForm):
         fields = ('First_Name', 'Last_Name', 'Date',
                   'Time', 'Phone_Number', 'People_No', 'Email', )
         widgets = {
-            #'Phone_Number': PhoneNumberPrefixWidget(),
-            "Phone_Number": forms.TextInput(
-                attrs={
-                    "placeholder": "Phone number (with a country code) ",
-                    "type": "tel",
-                    "minlength": 12,
+            #'Phone_Number_0': PhoneNumberPrefixWidget(initial='IE'),
+            "Phone_Number": forms.TextInput(attrs={
+                  "placeholder": "Phone number (with a country code) ",
+                  "type": "tel",
+                  "minlength": 12,
                     "maxlength": 15,}),
             'Date' : FutureDateInput(),
             'Time': forms.DateInput(
