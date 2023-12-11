@@ -28,9 +28,9 @@ class BookingForms(forms.ModelForm):
             #'Phone_Number_0': PhoneNumberPrefixWidget(initial='IE'),
             "Phone_Number": forms.TextInput(attrs={
                   "placeholder": "Phone number (with a country code) ",
-                  "type": "tel",
-                  "minlength": 12,
-                    "maxlength": 15,}),
+                  "type": "tel",}),
+                 # "minlength": 5,
+                 #   "maxlength": 15,}),
             'Date' : FutureDateInput(),
             'Time': forms.DateInput(
                 format=("%H:%M"),
