@@ -22,11 +22,11 @@ class MenuList(generic.ListView):
 
 class BookingDetails(View):
 
-    def get(self, request, slug, *args, **kwargs):
+    def get(self, request, id, *args, **kwargs):
 
         queryset = Booking_details.objects.all()
 
-        booking = get_object_or_404(queryset, Slug=slug)
+        booking = get_object_or_404(queryset, pk=id)
 
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
@@ -51,12 +51,13 @@ class BookingForm(View):
             messages.success(request, 'Please enter a valid data Phone numer without any sign ')
             return render(request, "booking/bookingform.html", {"booking_form": BookingForms()}) 
                       
-        elif Booking_details.objects.filter(Phone_Number=Phone_no).exists():
-            messages.info(request, "Previous Booking")
-            booking = request.POST.get('Phone_Number')
-            bookings = get_object_or_404(Booking_details, Slug=booking)
-            return render(request, "booking/show_booking.html",
-                        {"bookings": bookings})
+        #elif Booking_details.objects.filter(Phone_Number=Phone_no).exists():
+           # messages.info(request, "Previous Booking")
+           # booking = request.POST.get('Phone_Number')
+            # bookings = get_object_or_404(Booking_details, Slug=booking)
+           # bookings = Booking_details.objects.filter(Phone_Number=booking)
+            #return render(request, "booking/show_all_prev_bookings.html",
+                      #  {"bookings": bookings})
         else:
                     
             booking_form = BookingForms(request.POST)
@@ -66,7 +67,7 @@ class BookingForm(View):
                 bookings = Booking_details.objects.all()
                 Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
                 booking = request.POST.get('Phone_Number')
-                bookings = get_object_or_404(Booking_details, Phone_Number=booking)
+                bookings = Booking_details.objects.filter(Phone_Number=booking)
                 return render(request, "booking/show_booking.html",
                             {"bookings": bookings})
 
@@ -194,4 +195,22 @@ class ApproveBooking(View):
                                                          "photo3": photo3})                  
 
 
-        
+class ShowPreviousBooking(View):
+
+    
+    def post(self, request, *args, **kwargs):
+
+        Phone_no = request.POST.get('Phone_Number')
+             
+        if Booking_details.objects.filter(Phone_Number=Phone_no).exists():
+            messages.info(request, "Previous Booking")
+            booking = request.POST.get('Phone_Number')
+            # bookings = get_object_or_404(Booking_details, Slug=booking)
+            bookings = Booking_details.objects.filter(Phone_Number=booking)
+            return render(request, "booking/show_all_prev_bookings.html",
+                        {"bookings": bookings})
+        else:
+                    
+            return render(request, "booking/bookingform.html",
+                      {"booking_form": BookingForms()})
+                 
