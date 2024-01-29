@@ -7,11 +7,11 @@ from .models import Booking_details, Menu
 
 @admin.register(Booking_details)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Slug', 'Date', 'Time',
-                    'People_No', 'approved')
-    search_fields = ['First_Name', 'Date']
-    list_filter = ('First_Name', 'Last_Name')
-    prepopulated_fields = {'Slug': ('Email',)}
+    list_display = ('User', 'Phone_Number', 'Slug', 'Date', 'Time',
+                    'People_No', 'approved') #'First_Name', 'Last_Name', 'Email'
+    search_fields = ['user', 'Date'] #First_Name
+    list_filter =  ('Phone_Number',) #('First_Name', 'Last_Name')
+    #prepopulated_fields = {'Slug': ('Email',)}
 
     actions = ['approve_booking']
 

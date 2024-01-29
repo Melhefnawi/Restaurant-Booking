@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views import generic, View
 from .models import Booking_details, Menu
+from django.contrib.auth.models import User
 from .forms import BookingForms
 import urllib.request
 import urllib.error
@@ -39,9 +40,11 @@ class BookingDetails(View):
 class BookingForm(View):
 
     def get(self, request, *args, **kwargs):
-
+        
+        form = BookingForms()
+        form['User'] = User.objects.get(username=self.request.user.username)
         return render(request, "booking/bookingform.html",
-                      {"booking_form": BookingForms()})
+                      {"booking_form": form})
 
     def post(self, request, *args, **kwargs):
 
@@ -196,6 +199,15 @@ class ApproveBooking(View):
 
 
 class ShowPreviousBooking(View):
+
+
+    def get(self, request, *args, **kwargs):
+
+        all_booking = Booking_details.objects.all()
+
+        return render(request, "booking/show_all_bookings.html",
+                      {"bookings": all_booking})
+
 
     
     def post(self, request, *args, **kwargs):

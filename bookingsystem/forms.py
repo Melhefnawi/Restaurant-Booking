@@ -22,8 +22,8 @@ class BookingForms(forms.ModelForm):
     class Meta:
 
         model = Booking_details
-        fields = ('First_Name', 'Last_Name', 'Date',
-                  'Time', 'Phone_Number', 'People_No', 'Email', )
+        fields = ( 'User','Date',
+                  'Time', 'Phone_Number', 'People_No',  ) #'Email','First_Name', 'Last_Name',
         widgets = {
             #'Phone_Number_0': PhoneNumberPrefixWidget(initial='IE'),
             "Phone_Number": forms.TextInput(attrs={
