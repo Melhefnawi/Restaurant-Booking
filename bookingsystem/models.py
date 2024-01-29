@@ -16,7 +16,7 @@ from django.core.validators import RegexValidator
 
 class Booking_details(models.Model):
     
-    Slug = models.SlugField(unique=True, null=True)
+    Slug = models.SlugField(null=True)
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
     Email = models.EmailField(null=True)

@@ -51,10 +51,6 @@ class BookingForm(View):
             messages.success(request, 'Please enter a valid data Phone numer without any sign ')
             return render(request, "booking/bookingform.html", {"booking_form": BookingForms()}) 
                       
-                
-
-       
-
         elif Booking_details.objects.filter(Phone_Number=Phone_no).exists():
             messages.info(request, "Previous Booking")
             booking = request.POST.get('Phone_Number')
@@ -67,19 +63,12 @@ class BookingForm(View):
             if booking_form.is_valid():
                 booking_form.save()
                 messages.success(request, 'Form submission successful')
-                
                 bookings = Booking_details.objects.all()
                 Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
-            
                 booking = request.POST.get('Phone_Number')
                 bookings = get_object_or_404(Booking_details, Phone_Number=booking)
-                
-
                 return render(request, "booking/show_booking.html",
                             {"bookings": bookings})
-
-          
-
 
 # create Showbooking class to show booking after being created
 
@@ -127,19 +116,15 @@ class EditBooking(View):
         queryset = Booking_details.objects.all()
         book_detail = get_object_or_404(queryset, Slug=slug)
         booking_form = BookingForms(instance=book_detail)
-
         return render(request, 'booking/editbooking.html', {"form": booking_form})
 
     def post(self, request, slug, *args, **kwargs):
 
         booking_ins = get_object_or_404(Booking_details, Slug=slug)
-
         booking_form_1 = BookingForms(request.POST, instance=booking_ins)
-
         if booking_form_1.is_valid():
             booking_form_1.save()
             messages.success(request, "Profile details updated.")
-
         else:
             booking_form_1 = BookingForms()
 
