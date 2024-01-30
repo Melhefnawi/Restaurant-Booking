@@ -44,14 +44,12 @@ class BookingDetails(View):
 
 class BookingForm(LoginRequiredMixin, View):
 
-    def get_initial(self):
-        return {'author': self.request.user}
-
+    
 
     def get(self, request, *args, **kwargs):
         
         form = BookingForms()
-       
+        form.User = self.request.user
         return render(request, "booking/bookingform.html",
                       {"booking_form": form})
 
@@ -210,7 +208,12 @@ class ShowPreviousBooking(View):
 
     def get(self, request, *args, **kwargs):
 
-        bookings = Booking_details.objects.filter(User=self.request.user)
+        bookings = Booking_details.objects.filter(User=self.request.user).first()
+
+        if bookings == None:
+            messages.error(request, "No Booking is made")
+
+
         return render(request, "booking/show_booking.html",
                              {"bookings": bookings})
 
