@@ -20,15 +20,15 @@
                                     <p class="booking_2">Phone Number: {{booking.Phone_Number}}</p>
                                     <p class="booking_2">People No: {{booking.People_No}}</p>
 
-                                    <a href="{% url 'edit_booking' booking.Slug %}">
+                                    <a href="{% url 'edit_booking' booking.id %}">
                                     <input class="btn btn-primary" type="button" value="Edit">
                                     </a>
                                     
-                                    <a href="{% url 'delete_booking' booking.Slug %}">
+                                    <a href="{% url 'delete_booking' booking.id %}">
                                     <input class="btn btn-danger" type="submit" value="Delete">
                                     </a>
                                     {% if user.is_superuser %}
-                                    <a href="{% url 'approve_booking' booking.Slug %}">
+                                    <a href="{% url 'approve_booking' booking.id %}">
                                     <input class="btn btn-success" type="submit" value="Approve">
                                     </a>
                                     {% endif %}

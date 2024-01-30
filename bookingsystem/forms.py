@@ -24,8 +24,8 @@ class BookingForms(forms.ModelForm):
     class Meta:
 
         model = Booking_details
-        fields = ( 'User','Date',
-                  'Time', 'Phone_Number', 'People_No',  ) #'Email','First_Name', 'Last_Name',
+        fields = ( 'User','First_Name', 'Last_Name','Email','Date',
+                  'Time', 'Phone_Number', 'People_No',)
         widgets = {
             #'Phone_Number_0': PhoneNumberPrefixWidget(initial='IE'),
             "Phone_Number": forms.TextInput(attrs={
@@ -33,6 +33,7 @@ class BookingForms(forms.ModelForm):
                   "type": "tel",}),
                  # "minlength": 5,
                  #   "maxlength": 15,}),
+            'User' : forms.HiddenInput(),  
             'Date' : FutureDateInput(),
             'Time': forms.DateInput(
                 format=("%H:%M"),

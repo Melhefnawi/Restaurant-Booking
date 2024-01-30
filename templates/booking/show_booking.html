@@ -20,6 +20,11 @@
                                 <h2 class="card-title">{{ booking.User }}</h2>
                                 <p class="card-text">{{ booking.User }}</p>
                                 <p class="card-text">Email: {{ booking.User.email}}</p>
+                                {% if booking.approved == True %}
+                                <p class="card-text"> Booking: Approved</p>
+                                {% else %}
+                                <p class="card-text"> Booking: Not Approved</p>
+                                {% end if %}
                                 <p class="card-text">Phone Number: {{ booking.Phone_Number}}</p>
                             </a>
                             <hr />

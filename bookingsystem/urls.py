@@ -11,10 +11,10 @@ urlpatterns = [
     path('booking/show_booking/', views.ShowBooking.as_view(),
          name='Show_Booking'),
     
-    path('booking/editbooking/<slug:slug>', views.EditBooking.as_view(), name='edit_booking'),
-    path('booking/deletebooking/<slug:slug>', views.DeleteBooking.as_view(), name='delete_booking'),
+    path('booking/editbooking/<int:id>', views.EditBooking.as_view(), name='edit_booking'),
+    path('booking/deletebooking/<int:id>', views.DeleteBooking.as_view(), name='delete_booking'),
     path('booking/show_all_bookings/', views.ShowAllBooking.as_view(), name='showallbookings'),
-    path('booking/approvebooking/<slug:slug>', views.ApproveBooking.as_view(), name='approve_booking'),
+    path('booking/approvebooking/<int:id>', views.ApproveBooking.as_view(), name='approve_booking'),
     path('booking/show_all_prev_bookings/', views.ShowPreviousBooking.as_view(), name='show_all_prev_bookings'),
      
 ]

@@ -48,8 +48,8 @@ class BookingForm(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         
-        form = BookingForms()
-        form.User = self.request.user
+        form = BookingForms(initial={'User': request.user})
+        
         return render(request, "booking/bookingform.html",
                       {"booking_form": form})
 
@@ -120,16 +120,16 @@ class HomePage(View):
 
 class EditBooking(View):
 
-    def get(self, request, slug, *args, **kwargs):
+    def get(self, request, id, *args, **kwargs):
 
         queryset = Booking_details.objects.all()
-        book_detail = get_object_or_404(queryset, Slug=slug)
+        book_detail = get_object_or_404(queryset, pk=id)
         booking_form = BookingForms(instance=book_detail)
         return render(request, 'booking/editbooking.html', {"form": booking_form})
 
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, id, *args, **kwargs):
 
-        booking_ins = get_object_or_404(Booking_details, Slug=slug)
+        booking_ins = get_object_or_404(Booking_details, pk=id)
         booking_form_1 = BookingForms(request.POST, instance=booking_ins)
         if booking_form_1.is_valid():
             booking_form_1.save()
@@ -137,8 +137,8 @@ class EditBooking(View):
         else:
             booking_form_1 = BookingForms()
 
-        booking = request.POST.get('Phone_Number')
-        bookings = get_object_or_404(Booking_details, Phone_Number=booking)
+        #booking = request.POST.get('Phone_Number')
+        bookings = Booking_details.objects.filter(pk=id)
 
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
@@ -148,17 +148,17 @@ class EditBooking(View):
 
 class DeleteBooking(View):
 
-    def get(self, request, slug, *args, **kwargs):
+    def get(self, request, id, *args, **kwargs):
 
         queryset = Booking_details.objects.all()
-        book_detail = get_object_or_404(queryset, Slug=slug)
+        book_detail = get_object_or_404(queryset, pk=id)
         booking_form_2 = BookingForms(instance=book_detail)
 
         return render(request, 'booking/deletebooking.html', {"form": booking_form_2})
 
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, id, *args, **kwargs):
 
-        booking_ins = get_object_or_404(Booking_details, Slug=slug)
+        booking_ins = get_object_or_404(Booking_details, pk=id)
 
         booking_ins.delete()
         messages.error(request, "Booking deleted.")
@@ -177,17 +177,17 @@ class DeleteBooking(View):
 
 class ApproveBooking(View):
 
-    def get(self, request, slug, *args, **kwargs):
+    def get(self, request, id, *args, **kwargs):
 
         queryset = Booking_details.objects.all()
-        book_detail = get_object_or_404(queryset, Slug=slug)
+        book_detail = get_object_or_404(queryset, pk=id)
         booking_form_2 = BookingForms(instance=book_detail)
 
         return render(request, 'booking/approvebooking.html', {"form": booking_form_2})
 
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, id, *args, **kwargs):
 
-        Booking_details.objects.filter(Slug=slug).update(approved=True)
+        Booking_details.objects.filter(pk=id).update(approved=True)
         
         messages.success(request, "The booking is approved")
 
@@ -208,12 +208,9 @@ class ShowPreviousBooking(View):
 
     def get(self, request, *args, **kwargs):
 
-        bookings = Booking_details.objects.filter(User=self.request.user).first()
+        bookings = Booking_details.objects.filter(User=self.request.user)
 
-        if bookings == None:
-            messages.error(request, "No Booking is made")
-
-
+        
         return render(request, "booking/show_booking.html",
                              {"bookings": bookings})
 
