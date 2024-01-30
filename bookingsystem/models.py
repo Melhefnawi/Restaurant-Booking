@@ -34,7 +34,7 @@ class Booking_details(models.Model):
         ordering = ['-Date']
        
     def __str__(self):
-        return f"Booking Name: {self.First_Name} {self.Last_Name}"
+        return f"Booking Name: {self.User} "
 
 # Menu Model to store the data related to Menu
 

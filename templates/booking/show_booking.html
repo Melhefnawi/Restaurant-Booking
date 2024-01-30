@@ -12,14 +12,14 @@
                             <div class="image-container">
                                 <div class="image-flash">
                                     <p class="author">
-                                        Booking Name: {{ booking.First_Name }} {{booking.Last_Name}}
+                                        Booking Name: {{ booking.User }} {{booking.Last_Name}}
                                     </p>
                                 </div>
                             </div>
                             <a href="{% url 'Booking_details' booking.id %}" class="post-link">
-                                <h2 class="card-title">{{ booking.First_Name }}</h2>
-                                <p class="card-text">{{ booking.Last_Name }}</p>
-                                <p class="card-text">Email: {{ booking.Email}}</p>
+                                <h2 class="card-title">{{ booking.User }}</h2>
+                                <p class="card-text">{{ booking.User }}</p>
+                                <p class="card-text">Email: {{ booking.User.email}}</p>
                                 <p class="card-text">Phone Number: {{ booking.Phone_Number}}</p>
                             </a>
                             <hr />

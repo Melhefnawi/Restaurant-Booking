@@ -19,6 +19,8 @@ class FutureDateInput(forms.DateInput):
 
 class BookingForms(forms.ModelForm):
 
+  
+
     class Meta:
 
         model = Booking_details

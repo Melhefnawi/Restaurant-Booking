@@ -6,6 +6,7 @@ from .forms import BookingForms
 import urllib.request
 import urllib.error
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 import re
 
 
@@ -19,6 +20,10 @@ class MenuList(generic.ListView):
     template_name = 'booking/menu.html'
 
 # Create a get  method for the Booking Details class 
+
+
+
+
 
 
 class BookingDetails(View):
@@ -37,12 +42,16 @@ class BookingDetails(View):
 # from the booking form in the booking tab and save it to the Database 
 
 
-class BookingForm(View):
+class BookingForm(LoginRequiredMixin, View):
+
+    def get_initial(self):
+        return {'author': self.request.user}
+
 
     def get(self, request, *args, **kwargs):
         
         form = BookingForms()
-        form['User'] = User.objects.get(username=self.request.user.username)
+       
         return render(request, "booking/bookingform.html",
                       {"booking_form": form})
 
@@ -67,12 +76,10 @@ class BookingForm(View):
             if booking_form.is_valid():
                 booking_form.save()
                 messages.success(request, 'Form submission successful')
-                bookings = Booking_details.objects.all()
-                Booking_details.objects.filter(Phone_Number=Phone_no).update(Slug=Phone_no)
                 booking = request.POST.get('Phone_Number')
                 bookings = Booking_details.objects.filter(Phone_Number=booking)
                 return render(request, "booking/show_booking.html",
-                            {"bookings": bookings})
+                             {"bookings": bookings})
 
 # create Showbooking class to show booking after being created
 
@@ -203,26 +210,12 @@ class ShowPreviousBooking(View):
 
     def get(self, request, *args, **kwargs):
 
-        all_booking = Booking_details.objects.all()
+        bookings = Booking_details.objects.filter(User=self.request.user)
+        return render(request, "booking/show_booking.html",
+                             {"bookings": bookings})
 
-        return render(request, "booking/show_all_bookings.html",
-                      {"bookings": all_booking})
+        
 
 
     
-    def post(self, request, *args, **kwargs):
-
-        Phone_no = request.POST.get('Phone_Number')
-             
-        if Booking_details.objects.filter(Phone_Number=Phone_no).exists():
-            messages.info(request, "Previous Booking")
-            booking = request.POST.get('Phone_Number')
-            # bookings = get_object_or_404(Booking_details, Slug=booking)
-            bookings = Booking_details.objects.filter(Phone_Number=booking)
-            return render(request, "booking/show_all_prev_bookings.html",
-                        {"bookings": bookings})
-        else:
-                    
-            return render(request, "booking/bookingform.html",
-                      {"booking_form": BookingForms()})
-                 
+    
