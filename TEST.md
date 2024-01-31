@@ -46,6 +46,8 @@ I have gone through each page using google chrome developer tools & Firefox insp
 
  ![Html Validator](docs/Test_images/Html_Validator.JPG) 
 
+ ![CSS Validator](docs/Test_images/CSS_Validator.JPG)
+
 
 - - -
 
@@ -87,17 +89,17 @@ Each page is achieving a score of 95 for the last three categories.
 
 | Goals | How are they achieved? |
 | :--- | :--- |
-| I want to make a booking at the restaurant. | I created a tab at the nav bar that allow user to open a form to make a booking
-| I want to see my pervious bookings| by clicking on my booking tab, that will allow user to navigate in all his pervious bookings|
-| I want see Menu | Menu Button at the nav bar allow the user to display the whole restaurant menu to choose what he prefer to eat |
-| I want to be able to logout | Users are able to logout the site by clicking the logout button |
+| I want to make a booking at the restaurant. | By clicking on making a booking tab, that will allow user to display booking form |
+| I want to see my pervious bookings| By clicking on my booking tab, that will display all user pervious bookings|
+| I want to see Menu | By clicking the Menu Button at the nav bar, that allow the user to display the whole restaurant menu to choose what he prefer to eat |
+| I want to logout | By clicking the logout Button at the nav bar, the users will be able to logout the site  |
 
 `As a Manager `
 
 | Goals | How are they achieved? |
 | :--- | :--- |
 | I want to be able to see all the bookings made by any user | By clicking the all booking button, it will display the all the bookings that are made by all the users |
-| I want to be able to approve the booking | As a manager the approve button will appear by clicking the booking |
+| I want to be able to approve the booking | By clicking the approve button, it will display the approve form to approve the booking |
 |As a manager, I want to edit the bookings| by clicking the edit button, the display form will show the booking details allowing to edit the booking|
 |As a manager, I want to be able to delete the booking | by clicking the delete button i can delete the choosen booking|
 
