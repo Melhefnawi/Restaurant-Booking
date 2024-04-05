@@ -49,22 +49,27 @@ class BookingForm(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
 
         Phone_no = request.POST.get('Phone_Number')
+        People_No = request.POST.get('People_No')
 
         if Phone_no.startswith("+"):
             messages.success(request, 'Please enter valid numer without sign')
             return render(request, "booking/bookingform.html",
                           {"booking_form": BookingForms()})
-
+        elif Phone_no.startswith("-"):
+            messages.success(request, 'Please enter valid numer without sign')
+            return render(request, "booking/bookingform.html",
+                          {"booking_form": BookingForms()})
+        elif  People_No.startswith("-"):
+            messages.success(request, 'Please enter valid numer without sign')
+            return render(request, "booking/bookingform.html",
+                          {"booking_form": BookingForms()})
         else:
 
-            booking_form = BookingForms(request.POST)
+            booking_form = BookingForms(request.POST, initial={'User': request.user})
             if booking_form.is_valid():
                 booking_form.save()
                 messages.success(request, 'Form submission successful')
-                booking = request.POST.get('Phone_Number')
-                bookings = Booking_details.objects.filter(Phone_Number=booking)
-                return render(request, "booking/show_booking.html",
-                              {"bookings": bookings})
+                return redirect('homepage')
 
 # create Showbooking class to show booking after being created
 
