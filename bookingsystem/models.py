@@ -16,10 +16,6 @@ from django.core.validators import RegexValidator
 
 class Booking_details(models.Model):
     
-    Slug = models.SlugField(null=True)
-    First_Name = models.CharField(max_length=200, null=True)
-    Last_Name = models.CharField(max_length=200, null=True)
-    Email = models.EmailField(null=True)
     Phone_Number = models.TextField(null=True, max_length=100)
     User = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="booking", null=True
