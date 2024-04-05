@@ -8,6 +8,7 @@ import urllib.request
 import urllib.error
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 import re
 
 
@@ -195,7 +196,7 @@ class ApproveBooking(View):
                                                          "photo3": photo3})
 
 
-class ShowPreviousBooking(View):
+class ShowPreviousBooking(UserPassesTestMixin,View):
 
     def get(self, request, *args, **kwargs):
 
@@ -203,3 +204,7 @@ class ShowPreviousBooking(View):
 
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
+
+    def test_func(self):
+
+        return self.request.user == self.request.user
