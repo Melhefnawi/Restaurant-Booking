@@ -24,7 +24,8 @@ class MenuList(generic.ListView):
 # Create a get  method for the Booking Details class
 
 
-class BookingDetails(View):
+class BookingDetails(LoginRequiredMixin, UserPassesTestMixin,View):
+
 
     def get(self, request, id, *args, **kwargs):
 
@@ -34,6 +35,17 @@ class BookingDetails(View):
 
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
+
+    def test_func(self):
+
+        queryset = Booking_details.objects.all()
+
+        booking = get_object_or_404(queryset, User=self.request.user)
+
+        if self.request.user == booking.User:
+            return True
+        else:
+            return False    
 
 # Create a get and post method for the Booking_form class which get the data
 # from the booking form in the booking tab and save it to the Database
@@ -75,7 +87,7 @@ class BookingForm(LoginRequiredMixin, View):
 # create Showbooking class to show booking after being created
 
 
-class ShowAllBooking(View):
+class ShowAllBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def get(self, request, *args, **kwargs):
 
@@ -84,12 +96,21 @@ class ShowAllBooking(View):
         return render(request, "booking/show_all_bookings.html",
                       {"bookings": all_booking})
 
+    def test_func(self):
 
-class ShowBooking(View):
+        return self.request.user.is_authenticated
+
+class ShowBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def get(self, request, *args, **kwargs):
 
         return render(request, "booking/show_booking.html")
+    def test_func(self):
+
+       if booking.user == self.request.user:
+            return True
+       else:
+            return False
 
 # Create Homapge class View to render the images from the Menu model in
 # the Home page
@@ -108,10 +129,12 @@ class HomePage(View):
         return render(request, "booking/homepage.html",
                       {"photo1": photo1, "photo2": photo2, "photo3": photo3})
 
+   
+
 # Create Edit view to show the edit of the Booking
 
 
-class EditBooking(View):
+class EditBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def get(self, request, id, *args, **kwargs):
 
@@ -135,11 +158,15 @@ class EditBooking(View):
 
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
+    
+    def test_func(self):
+
+        return self.request.user.is_authenticated
 
 # Create delete view with get and post to delete the Booking
 
 
-class DeleteBooking(View):
+class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def get(self, request, id, *args, **kwargs):
 
@@ -167,8 +194,12 @@ class DeleteBooking(View):
                                                          "photo2": photo2,
                                                          "photo3": photo3})
 
+    def test_func(self):
 
-class ApproveBooking(View):
+        return self.request.user.is_authenticated
+
+
+class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def get(self, request, id, *args, **kwargs):
 
@@ -194,9 +225,11 @@ class ApproveBooking(View):
         return render(request, "booking/homepage.html", {"photo1": photo1,
                                                          "photo2": photo2,
                                                          "photo3": photo3})
+    def test_func(self):
 
+        return self.request.user.is_superuser
 
-class ShowPreviousBooking(UserPassesTestMixin,View):
+class ShowPreviousBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def get(self, request, *args, **kwargs):
 
@@ -207,4 +240,4 @@ class ShowPreviousBooking(UserPassesTestMixin,View):
 
     def test_func(self):
 
-        return self.request.user == self.request.user
+        return self.request.user.is_authenticated
