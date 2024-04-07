@@ -26,9 +26,12 @@ class MenuList(generic.ListView):
 
 class BookingDetails(LoginRequiredMixin, UserPassesTestMixin,View):
 
+    
+    
 
     def get(self, request, id, *args, **kwargs):
 
+       
         queryset = Booking_details.objects.all()
 
         booking = get_object_or_404(queryset, pk=id)
@@ -36,19 +39,16 @@ class BookingDetails(LoginRequiredMixin, UserPassesTestMixin,View):
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
 
+
+
     def test_func(self):
-
+        
+        pk = self.kwargs.get('id')
         queryset = Booking_details.objects.all()
-
-        booking = get_object_or_404(queryset, User=self.request.user)
-
-        if self.request.user == booking.User:
-            return True
-        else:
-            return False    
-
-# Create a get and post method for the Booking_form class which get the data
-# from the booking form in the booking tab and save it to the Database
+        booking = get_object_or_404(queryset, pk=pk)
+        return self.request.user == booking.User
+        
+       
 
 
 class BookingForm(LoginRequiredMixin, View):
@@ -98,19 +98,20 @@ class ShowAllBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def test_func(self):
 
-        return self.request.user.is_authenticated
+        return self.request.user.is_superuser
 
 class ShowBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def get(self, request, *args, **kwargs):
 
         return render(request, "booking/show_booking.html")
+
     def test_func(self):
 
-       if booking.user == self.request.user:
-            return True
-       else:
-            return False
+        pk = self.kwargs.get('id')
+        queryset = Booking_details.objects.all()
+        booking = get_object_or_404(queryset, pk=pk)
+        return self.request.user == booking.User
 
 # Create Homapge class View to render the images from the Menu model in
 # the Home page
@@ -161,7 +162,10 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin,View):
     
     def test_func(self):
 
-        return self.request.user.is_authenticated
+        pk = self.kwargs.get('id')
+        queryset = Booking_details.objects.all()
+        booking = get_object_or_404(queryset, pk=pk)
+        return self.request.user == booking.User
 
 # Create delete view with get and post to delete the Booking
 
@@ -196,7 +200,11 @@ class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def test_func(self):
 
-        return self.request.user.is_authenticated
+      
+        pk = self.kwargs.get('id')
+        queryset = Booking_details.objects.all()
+        booking = get_object_or_404(queryset, pk=pk)
+        return self.request.user == booking.User
 
 
 class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin,View):
@@ -240,4 +248,7 @@ class ShowPreviousBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def test_func(self):
 
-        return self.request.user.is_authenticated
+        pk = self.kwargs.get('id')
+        queryset = Booking_details.objects.all()
+        booking = get_object_or_404(queryset, pk=pk)
+        return self.request.user == booking.User
