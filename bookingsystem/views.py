@@ -55,7 +55,7 @@ class BookingForm(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
 
-        form = BookingForms(initial={'User': request.user})
+        form = BookingForms(initial={'User': self.request.user})
         return render(request, "booking/bookingform.html",
                       {"booking_form": form})
 
@@ -67,18 +67,18 @@ class BookingForm(LoginRequiredMixin, View):
         if Phone_no.startswith("+"):
             messages.success(request, 'Please enter valid numer without sign')
             return render(request, "booking/bookingform.html",
-                          {"booking_form": BookingForms()})
+                          {"booking_form": BookingForms(initial={'User': self.request.user})})
         elif Phone_no.startswith("-"):
             messages.success(request, 'Please enter valid numer without sign')
             return render(request, "booking/bookingform.html",
-                          {"booking_form": BookingForms()})
+                          {"booking_form": BookingForms(initial={'User': self.request.user})})
         elif  People_No.startswith("-"):
             messages.success(request, 'Please enter valid numer without sign')
             return render(request, "booking/bookingform.html",
-                          {"booking_form": BookingForms()})
+                          {"booking_form": BookingForms(initial={'User': self.request.user})})
         else:
 
-            booking_form = BookingForms(request.POST, initial={'User': request.user})
+            booking_form = BookingForms(request.POST, initial={'User': self.request.user})
             if booking_form.is_valid():
                 booking_form.save()
                 messages.success(request, 'Form submission successful')
@@ -248,7 +248,5 @@ class ShowPreviousBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def test_func(self):
 
-        pk = self.kwargs.get('id')
-        queryset = Booking_details.objects.all()
-        booking = get_object_or_404(queryset, pk=pk)
-        return self.request.user == booking.User
+        
+        return self.request.user.is_authenticated
