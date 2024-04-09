@@ -29,7 +29,7 @@ class BookingForms(forms.ModelForm):
         widgets = {
             #'Phone_Number_0': PhoneNumberPrefixWidget(initial='IE'),
             "Phone_Number": forms.TextInput(attrs={
-                  "placeholder": "Phone number (without a country code or any sign) ",
+                  "placeholder": "Please enter a 10-digit number without spaces or characters.",
                   "type": "tel",}),
                  # "minlength": 5,
                  #   "maxlength": 15,}),

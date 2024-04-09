@@ -59,23 +59,32 @@ class BookingForm(LoginRequiredMixin, View):
         return render(request, "booking/bookingform.html",
                       {"booking_form": form})
 
+    
+
     def post(self, request, *args, **kwargs):
 
         Phone_no = request.POST.get('Phone_Number')
         People_No = request.POST.get('People_No')
+        pattern = r'^\d{10}$'
 
-        if Phone_no.startswith("+"):
-            messages.success(request, 'Please enter valid numer without sign')
+
+        if not re.match(pattern, Phone_no):
+            messages.success(request, 'Please enter valid Phone number ')
+            return render(request, "booking/bookingform.html",
+                          {"booking_form": BookingForms(initial={'User': self.request.user})})
+        elif Phone_no.startswith("+"):
+            messages.success(request, 'Please enter valid number without sign')
             return render(request, "booking/bookingform.html",
                           {"booking_form": BookingForms(initial={'User': self.request.user})})
         elif Phone_no.startswith("-"):
-            messages.success(request, 'Please enter valid numer without sign')
+            messages.success(request, 'Please enter valid number without sign')
             return render(request, "booking/bookingform.html",
                           {"booking_form": BookingForms(initial={'User': self.request.user})})
         elif  People_No.startswith("-"):
-            messages.success(request, 'Please enter valid numer without sign')
+            messages.success(request, 'Please enter valid People number without sign')
             return render(request, "booking/bookingform.html",
                           {"booking_form": BookingForms(initial={'User': self.request.user})})
+
         else:
 
             booking_form = BookingForms(request.POST, initial={'User': self.request.user})
