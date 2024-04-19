@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['8000-melhefnawi-restaurantbo-6qaerxnp800.ws-eu110.gitpod.io',
+ALLOWED_HOSTS = ['8000-melhefnawi-restaurantbo-ynbfd9uxg97.ws-eu110.gitpod.io',
                  'arabian.herokuapp.com', 'localhost',
                  'arabian-8c3cc574e38b.herokuapp.com']
 

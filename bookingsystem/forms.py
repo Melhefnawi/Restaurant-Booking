@@ -5,19 +5,61 @@ from django.utils.timezone import now
 from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions)
-from phonenumber_field.widgets import PhoneNumberPrefixWidget    
+from phonenumber_field.widgets import PhoneNumberPrefixWidget  
+from datetime import datetime, timedelta  
 
 # Creating the Booking_Form 
+
+#class FutureDateInput(forms.DateInput):
+#    input_type = 'date'
+
+#    def get_context(self, name, value, attrs):
+#        attrs.setdefault('min', now().strftime('%Y-%m-%d'))
+#        return super().get_context(name, value, attrs)
 
 class FutureDateInput(forms.DateInput):
     input_type = 'date'
 
     def get_context(self, name, value, attrs):
-        attrs.setdefault('min', now().strftime('%Y-%m-%d'))
+        current_date = datetime.now().date()
+        one_day_later = current_date + timedelta(days=1)
+        attrs.setdefault('min', one_day_later.strftime('%Y-%m-%d'))
         return super().get_context(name, value, attrs)
 
+class CurrentOrOneHourLaterTimeField(forms.TimeField):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        current_time = datetime.now()
+        one_hour_later = current_time + timedelta(hours=1)
+        time_value = one_hour_later.strftime('%H:%M')  # Format as HH:MM
+        self.initial = time_value
 
 class BookingForms(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Calculate current time and one hour later
+        current_time = datetime.now().time()
+        one_hour_later = (datetime.now() + timedelta(hours=1)).time()
+
+        # Format the times as string in 'HH:MM' format
+        current_time_str = current_time.strftime('%H:%M')
+        one_hour_later_str = one_hour_later.strftime('%H:%M')
+
+        # Set the initial value of the time field
+        self.fields['Time'] = forms.TimeField(
+            initial=one_hour_later_str,
+            widget=forms.TimeInput(
+                format='%H:%M',
+                attrs={
+                    'class': 'form-control',
+                    
+                    'type': 'time',
+                    #'min': current_time_str,
+                    'id': 'id_time_field', 
+                }
+            )
+        )
 
   
 
@@ -35,14 +77,21 @@ class BookingForms(forms.ModelForm):
                  #   "maxlength": 15,}),
             'User' : forms.HiddenInput(),  
             'Date' : FutureDateInput(),
-            'Time': forms.DateInput(
-                format=("%H:%M"),
-                attrs={'class': 'form-control', 
-                       'placeholder': 'Select a date',
-                       'type': 'time'  
-                    }),
+            #'Time': forms.DateInput(
+            #        format=("%H:%M"),
+            #    attrs={'class': 'form-control', 
+            #           'placeholder': 'Select a date',
+            #           'type': 'time'  
+            #       })
+            #'Time': CurrentOrOneHourLaterTimeField(widget=forms.TimeInput(
+            #        format=("%H:%M"),
+            #        attrs={'class': 'form-control', 
+            #               'placeholder': 'Select a time',
+            #               'type': 'time'  
+            #           })),
+           
             
-
+        
                 
          }        
 

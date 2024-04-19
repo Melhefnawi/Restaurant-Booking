@@ -25,3 +25,24 @@
 </div>
 
 {% endblock content %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      var timeField = document.getElementById('id_time_field');
+      var now = new Date();
+      var currentHour = now.getHours();
+      var currentMinute = now.getMinutes();
+      
+      // Set the minimum time as the current time
+      timeField.min = currentHour.toString().padStart(2, '0') + ':' + currentMinute.toString().padStart(2, '0');
+      
+      // Disable previous times in the time field
+      timeField.addEventListener('input', function () {
+          var selectedHour = parseInt(timeField.value.split(':')[0]);
+          var selectedMinute = parseInt(timeField.value.split(':')[1]);
+          if (selectedHour < currentHour || (selectedHour === currentHour && selectedMinute < currentMinute)) {
+              timeField.value = timeField.min;
+          }
+      });
+  });
+</script>
