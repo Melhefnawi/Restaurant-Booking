@@ -12,7 +12,7 @@
               <div class="image-container">
                 <div class="image-flash">
                   <p class="author">
-                    Booking Name: {{ booking.First_Name }} {{booking.Last_Name}}
+                    Client Name: {{ booking.First_Name }}
                   </p>
                 </div>
               </div>
@@ -20,8 +20,8 @@
                 href="{% url 'Booking_details' booking.id %}"
                 class="post-link"
               >
-                <h2 class="card-title">{{ booking.First_Name }}</h2>
-                <p class="card-text">{{ booking.Last_Name }}</p>
+              
+                
                 
                 {% if booking.approved == True %}
                     <p class="card-text"> Booking: Approved</p>
@@ -32,7 +32,7 @@
               </a>
               <hr />
               <p class="card-text text-muted h6">
-                Booking Date: {{booking.Date}} People No: {{booking.People_No}}
+                Booking Date: {{booking.Date}} Booking time:{{booking.Time}} People No: {{booking.People_No}}
               </p>
             </div>
           </div>
