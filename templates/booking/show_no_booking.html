@@ -19,6 +19,7 @@
                             <a href="{% url 'Booking_details' booking.id %}" class="post-link">
                                 <h2 class="card-title">{{ booking.User }}</h2>
                                 <p class="card-text">{{ booking.User }}</p>
+                                <p class="card-text">click here to Edit booking</p>
                                 
                                 {% if booking.approved == True %}
                                 <p class="card-text"> Booking: Approved</p>
