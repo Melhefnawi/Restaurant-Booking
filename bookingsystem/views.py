@@ -24,31 +24,22 @@ class MenuList(generic.ListView):
 # Create a get  method for the Booking Details class
 
 
-class BookingDetails(LoginRequiredMixin, UserPassesTestMixin,View):
-
-    
-    
+class BookingDetails(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request, id, *args, **kwargs):
 
-       
         queryset = Booking_details.objects.all()
-
         booking = get_object_or_404(queryset, pk=id)
 
         return render(request, "booking/booking_details.html",
                       {"booking": booking, "booking_form": BookingForms()})
 
-
-
     def test_func(self):
-        
+
         pk = self.kwargs.get('id')
         queryset = Booking_details.objects.all()
         booking = get_object_or_404(queryset, pk=pk)
         return self.request.user == booking.User
-        
-       
 
 
 class BookingForm(LoginRequiredMixin, View):
@@ -59,35 +50,38 @@ class BookingForm(LoginRequiredMixin, View):
         return render(request, "booking/bookingform.html",
                       {"booking_form": form})
 
-    
-
     def post(self, request, *args, **kwargs):
 
         Phone_no = request.POST.get('Phone_Number')
         People_No = request.POST.get('People_No')
         pattern = r'^\d{10}$'
 
-
         if not re.match(pattern, Phone_no):
             messages.success(request, 'Please enter valid Phone number ')
             return render(request, "booking/bookingform.html",
-                          {"booking_form": BookingForms(initial={'User': self.request.user})})
+                          {"booking_form":
+                           BookingForms(initial={'User': self.request.user})})
         elif Phone_no.startswith("+"):
             messages.success(request, 'Please enter valid number without sign')
             return render(request, "booking/bookingform.html",
-                          {"booking_form": BookingForms(initial={'User': self.request.user})})
+                          {"booking_form":
+                           BookingForms(initial={'User': self.request.user})})
         elif Phone_no.startswith("-"):
             messages.success(request, 'Please enter valid number without sign')
             return render(request, "booking/bookingform.html",
-                          {"booking_form": BookingForms(initial={'User': self.request.user})})
-        elif  People_No.startswith("-"):
-            messages.success(request, 'Please enter valid People number without sign')
+                          {"booking_form":
+                           BookingForms(initial={'User': self.request.user})})
+        elif People_No.startswith("-"):
+            messages.success(request,
+                             'Please enter valid People number without sign')
             return render(request, "booking/bookingform.html",
-                          {"booking_form": BookingForms(initial={'User': self.request.user})})
+                          {"booking_form":
+                           BookingForms(initial={'User': self.request.user})})
 
         else:
 
-            booking_form = BookingForms(request.POST, initial={'User': self.request.user})
+            booking_form = BookingForms(request.POST,
+                                        initial={'User': self.request.user})
             if booking_form.is_valid():
                 booking_form.save()
                 messages.success(request, 'Form submission successful')
@@ -96,7 +90,7 @@ class BookingForm(LoginRequiredMixin, View):
 # create Showbooking class to show booking after being created
 
 
-class ShowAllBooking(LoginRequiredMixin, UserPassesTestMixin,View):
+class ShowAllBooking(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request, *args, **kwargs):
 
@@ -109,7 +103,8 @@ class ShowAllBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
         return self.request.user.is_superuser
 
-class ShowBooking(LoginRequiredMixin, UserPassesTestMixin,View):
+
+class ShowBooking(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request, *args, **kwargs):
 
@@ -139,12 +134,11 @@ class HomePage(View):
         return render(request, "booking/homepage.html",
                       {"photo1": photo1, "photo2": photo2, "photo3": photo3})
 
-   
 
 # Create Edit view to show the edit of the Booking
 
 
-class EditBooking(LoginRequiredMixin, UserPassesTestMixin,View):
+class EditBooking(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request, id, *args, **kwargs):
 
@@ -162,14 +156,13 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin,View):
         People_No = request.POST.get('People_No')
         pattern = r'^\d{10}$'
 
-
         if not re.match(pattern, Phone_no):
-            messages.warning(request, 'Please enter valid Phone number ')
+            messages.warning(request,
+                             'Enter 10 digit valid Phone number without sign')
             return render(request, "booking/editbooking.html",
                           {"form": booking_form_1})
-        
-        elif  People_No.startswith("-"):
-            messages.success(request, 'Please enter valid People number without sign')
+        elif People_No.startswith("-"):
+            messages.success(request, 'Enter valid People number without sign')
             return render(request, "booking/editbooking.html",
                           {"form": booking_form_1})
 
@@ -183,7 +176,7 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
         return render(request, "booking/show_booking.html",
                       {"bookings": bookings})
-    
+
     def test_func(self):
 
         pk = self.kwargs.get('id')
@@ -194,7 +187,7 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 # Create delete view with get and post to delete the Booking
 
 
-class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin,View):
+class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request, id, *args, **kwargs):
 
@@ -224,14 +217,13 @@ class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def test_func(self):
 
-      
         pk = self.kwargs.get('id')
         queryset = Booking_details.objects.all()
         booking = get_object_or_404(queryset, pk=pk)
         return self.request.user == booking.User
 
 
-class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin,View):
+class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request, id, *args, **kwargs):
 
@@ -257,11 +249,13 @@ class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin,View):
         return render(request, "booking/homepage.html", {"photo1": photo1,
                                                          "photo2": photo2,
                                                          "photo3": photo3})
+
     def test_func(self):
 
         return self.request.user.is_superuser
 
-class ShowPreviousBooking(LoginRequiredMixin, UserPassesTestMixin,View):
+
+class ShowPreviousBooking(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request, *args, **kwargs):
 
@@ -272,5 +266,4 @@ class ShowPreviousBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
     def test_func(self):
 
-        
         return self.request.user.is_authenticated
