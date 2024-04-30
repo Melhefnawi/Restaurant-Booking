@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['8000-melhefnawi-restaurantbo-jiylf7r8i2g.ws-eu110.gitpod.io',
+ALLOWED_HOSTS = ['8000-melhefnawi-restaurantbo-pbpui055ww5.ws-eu110.gitpod.io',
                  'arabian.herokuapp.com', 'localhost',
                  'arabian-8c3cc574e38b.herokuapp.com']
 
@@ -85,7 +85,10 @@ ROOT_URLCONF = 'arabian.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,10 +96,17 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'arabian.wsgi.application'
 
