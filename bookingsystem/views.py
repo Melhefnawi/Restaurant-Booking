@@ -158,7 +158,22 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin,View):
 
         booking_ins = get_object_or_404(Booking_details, pk=id)
         booking_form_1 = BookingForms(request.POST, instance=booking_ins)
-        if booking_form_1.is_valid():
+        Phone_no = request.POST.get('Phone_Number')
+        People_No = request.POST.get('People_No')
+        pattern = r'^\d{10}$'
+
+
+        if not re.match(pattern, Phone_no):
+            messages.warning(request, 'Please enter valid Phone number ')
+            return render(request, "booking/editbooking.html",
+                          {"form": booking_form_1})
+        
+        elif  People_No.startswith("-"):
+            messages.success(request, 'Please enter valid People number without sign')
+            return render(request, "booking/editbooking.html",
+                          {"form": booking_form_1})
+
+        elif booking_form_1.is_valid():
             booking_form_1.save()
             messages.success(request, "Profile details updated.")
         else:
