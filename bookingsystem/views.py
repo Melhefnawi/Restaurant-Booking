@@ -188,7 +188,13 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin, View):
         pk = self.kwargs.get('id')
         queryset = Booking_details.objects.all()
         booking = get_object_or_404(queryset, pk=pk)
-        return self.request.user == booking.User
+        if self.request.user == booking.User:
+            return True
+        elif self.request.user.is_superuser:
+            return True
+        else:
+            return False
+
 
 # Create delete view with get and post to delete the Booking
 
@@ -226,7 +232,13 @@ class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin, View):
         pk = self.kwargs.get('id')
         queryset = Booking_details.objects.all()
         booking = get_object_or_404(queryset, pk=pk)
-        return self.request.user == booking.User
+        if self.request.user == booking.User:
+            return True
+        elif self.request.user.is_superuser:
+            return True
+        else:
+            return False
+
 
 
 class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin, View):
