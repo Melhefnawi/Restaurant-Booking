@@ -212,7 +212,7 @@ Views were secured by using the django class based view mixin, UserPassesTextMix
 
 Environment variables were stored in an env.py for local development for security purposes to ensure no secret keys, api keys or sensitive information was added the the repository. In production, these variables were added to the heroku config vars within the project.
 
-
+![Edit Booking](docs/readme_images/Forbidden.JPG)
 
 ## Technolgies
 
