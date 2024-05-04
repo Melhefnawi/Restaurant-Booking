@@ -39,7 +39,13 @@ class BookingDetails(LoginRequiredMixin, UserPassesTestMixin, View):
         pk = self.kwargs.get('id')
         queryset = Booking_details.objects.all()
         booking = get_object_or_404(queryset, pk=pk)
-        return self.request.user == booking.User
+
+        if self.request.user == booking.User:
+            return True
+        elif self.request.user.is_superuser:
+            return True
+        else:
+            return False
 
 
 class BookingForm(LoginRequiredMixin, View):
